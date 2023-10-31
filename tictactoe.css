@@ -2,24 +2,65 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+background-color:#91cc5b;  }
   
   html {
     font-size: calc(15px + 0.390625vw);
     
   }
 
-  #grid-container {display:flex; justify-content: center; align-items:center;}
+h1, h2 {text-align: center;}
+
+
+#buttoncontainer {display: flex; flex-direction: row; justify-content: flex-start;}
+
+.playerselect {width:40%; margin:5%;}
+
+
+.animate{
+  background-color:#fd8686;
+border-color:red;   
+ border-width:.3rem;
+}
+#resetbutton {width:50%; margin: 0 auto; display:flex; flex-direction: row; justify-content: center; text-align: center; margin-top: 3rem;}
+
+
+#warning {
+  text-align: center;
+  visibility: hidden;
+}
+
+
+   #grid-container {
+    display:flex; justify-content: center; align-items:center;  
+    margin:0 auto;
+}
   
   #grid {
     display:grid;
     grid-template-rows: 33% 33% 33%;
     grid-template-columns: 33% 33% 33%;
-grid-gap:.5rem;
+    grid-gap:.5rem;
     width:90%;
     aspect-ratio: 1/1;
-    align-content: center;
+    /* align-content: center; */
   }
 
   .box {border-color: black; border-style: solid; text-align: center; display: flex; justify-content: center; align-items: center;}
 
+   #announcementContainer {height:50%; width:90%; top: 25%; left: 5%;
+       background-color: white; 
+      position:fixed; 
+      display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+  } 
+
+
+    #beginningAnnouncement {
+      /* visibility:hidden; */
+     color:red;  z-index: 4; text-align: center;
+     background-color: white;
+     font-size: 4rem;
+          }  

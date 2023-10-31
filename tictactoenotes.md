@@ -93,3 +93,50 @@ quick issue, bad assigning.
 
 This has taken about an hour. Now I can focus on the next part of the effort, forming the boxes themselves with css.
 
+10/21 have made most of the visual bones. just need to center the grid and giev it personality. should I do that first or some fo the js?
+Maybe some of the js and worry about the visuals later. Expect the grid. That is just nagging.
+
+change cursor each turn
+
+10/22
+Functional languages are good when you have a fixed set of things, and as your code evolves, you primarily add new operations on existing things. 
+Object-oriented languages are good when you have a fixed set of operations on things, and as your code evolves, you primarily add new things. 
+
+As I am manipulating an existing board, lll nuse fp, althougfh i should try oop next project
+
+attempting to set up functions for the board pieces. 
+function selectplayer(box[j]) isnt workable? Am I putting it in the wronf scope?
+
+10/26
+The loop is < not <= 
+
+     box[j].addEventListener('click', selectplayer)
+     NOT
+         box[j].addEventListener('click', selectplayer())
+    The second one causes the function to happen immediately
+
+
+    need to have the loop affect both the first and the second buttons
+    
+
+10/27
+
+use color scheme of lbrown dbrown and green
+    g/lb/db
+
+Have the warning appear in html. do some animation similar as with the color change
+
+10/28 have the whitebox to put alert in. just needed to make it absolute. the issue is centering the text vertically. 
+
+10/29 I need to make the PARENT flex, not the child. Now i can focus on giving a state. 
+
+I need to deactivate the buttons while the game is active
+
+make an error message for the program
+
+
+10/30
+
+I need to figure out how to make buttons unusable based on the fact the game has started
+
+while makes a loop, avoid that.x    
