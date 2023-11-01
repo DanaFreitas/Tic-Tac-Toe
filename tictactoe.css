@@ -46,6 +46,10 @@ border-color:red;
     /* align-content: center; */
   }
 
+#turnAnnouncer {width:90%; text-align: center; font-size: 3rem;}
+
+
+
   .box {border-color: black; border-style: solid; text-align: center; display: flex; justify-content: center; align-items: center;}
 
    #announcementContainer {height:50%; width:90%; top: 25%; left: 5%;

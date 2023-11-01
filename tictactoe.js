@@ -4,8 +4,13 @@ const animate = document.getElementsByClassName("animate");
 const warning = document.getElementById("warning");
 const beginningAnnouncement = document.getElementById("beginningAnnouncement");
 const anouncementContainer = document.getElementById("announcementContainer");
-const Oplayer = document.getElementById("Oplayer");
-const Xplayer = document.getElementById("Xplayer");
+let turnAnnouncer = document.getElementById("turnAnnouncer");
+let started = false;
+console.log(started)
+
+//const 2 = "2";
+//const Oplayer = document.getElementById("Oplayer");
+//const Xplayer = document.getElementById("Xplayer");
 let turn;
 
 let board = [[], [], []];
@@ -29,11 +34,19 @@ for (row = 0; row <= board.length; row++) {
   }
 }
 
+
+
 for (let j = 0; j < box.length; j++) {
   box[j].addEventListener("click", selectplayer);
 
   function selectplayer() {
     for (let k = 0; k < selectButton.length; k++) {
+     
+      if(started === true) {
+        console.log("button azterketa")
+        console.log(started)
+        return;}
+     
       selectButton[k].classList.add("animate");
       warning.style.visibility = "visible";
 
@@ -41,54 +54,54 @@ for (let j = 0; j < box.length; j++) {
         selectButton[k].classList.remove("animate");
         warning.style.visibility = "hidden";
       }, 1000);
+
+     
+      
     }
   }
 }
 
-//use this to have states of there being a turn and there being a game
+
 
 for (let i = 0; i < selectButton.length; i++) {
-  selectButton[i].addEventListener("click", begingame);
+  selectButton[i].addEventListener("click", function () {
 
 
+if(started === true){
+  console.log("You need to reset the game.")
+  console.log(started)
+  return;
 }
 
-  function begingame(selectButton) {
-    anouncementContainer.style.visibility = "visible";
-    //anouncementContainer
-    setTimeout(() => {
-      anouncementContainer.style.visibility = "hidden";
-    }, 1000);
 
-    if (this === Oplayer) {
-      turn = Oplayer.id;
-    } else {
-      turn = Xplayer.id;
-    }
-    console.log(turn);
+    let turn = selectButton[i].getAttribute("data-icon");
 
-    console.log(` The turn is ${turn}`);
-  }
-
-  function midgame(selectButton) {
-    if (turn === false) {
-      return;
-    } else {
-      console.log("You have already started a game.");
-    }
-  }
+    begingame(turn);
 
 
-//   if (turn === Oplayer || turn === Xplayer) {
-//   }
+  let itStarted = true;  
+  });
+}
 
-//   function midgame(selectButton)
+function begingame(turn) {
+  anouncementContainer.style.visibility = "visible";
+  setTimeout(() => {
+    anouncementContainer.style.visibility = "hidden";
+    turnAnnouncer.textContent=`It's ${turn}'s turn.`
 
-//     {
-//       console.log("azterketa")
+  }, 500);
+  console.log(turn)
+  console.log(started)
+return started = true;
+}
 
-//     //  for (let k = 0; k < selectButton.length; k++) {
-//     //    this.disabled = true;
-//     //    console.log("Please Finish or reset the game.")
-//     //  }
-//  }
+
+if(turn) {
+  for (let j = 0; j < box.length; j++) {
+    box[j].addEventListener("click", playinggame())
+
+    function playinggame()
+    {console.log(` azterketa playyinggame function`)}
+    
+  
+}}

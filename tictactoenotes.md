@@ -140,3 +140,45 @@ make an error message for the program
 I need to figure out how to make buttons unusable based on the fact the game has started
 
 while makes a loop, avoid that.x    
+
+
+I made the incorporate two functions at once. I think this is helping me get a feel for functional programming. However, whenever I select them, I get "Xplayer tictactoe.js:76:13
+ The turn is Xplayer tictactoe.js:78:13
+You have already started a game." multiple times in quick succession."
+
+
+10/31 
+
+the variable isnt assigning properly
+
+it also says "you have started the game" the first time I click, and not subsequent times. 
+
+
+What do I need to do? 
+
+I need to run the for loop and hve it. 
+
+turn is being assigneed whenever i click on the first button
+I need to seperate those functions into different loops.
+
+First though, I should figure out how to assign the buttons correctly instead os splittin gmy attention
+
+Couldnt use, this, but why not assign the variable in the for loop? Did that, and well.
+
+
+have if statement where if the game started, then print the warning and have it return
+
+Should I have the if statement in the initial event, or should i have it later on?
+
+    initial
+        checking needs to come first
+            I need a way to clare the game has begun, like let gamebegun = true; but i need that to be global. 
+    later on
+        less messy
+
+
+Issue, I need a way to check a condition that hasnt happened yet. Maybe it should be that I need to reverese the order of the code?
+    maybe the condition is spmething being blank, if blank, start game, if not then put warning. I need to figure out the scoping.
+
+11/1 return helps bring things to global scope
+return ending function
