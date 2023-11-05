@@ -182,3 +182,70 @@ Issue, I need a way to check a condition that hasnt happened yet. Maybe it shoul
 
 11/1 return helps bring things to global scope
 return ending function
+
+The button neeeded to do different functions at different times. helped with a simple if statement
+
+
+had problem adding html to the buttons. I think it needs to be added with js due to js defining it
+
+In selecting the squares, the first two buttons are always the ones that are selected. not known why
+    OI had selectbutton instead of box
+        and it selecyts all of them
+
+
+Turn isnt registering when I click the boxes
+its undefined even when I remove everything else from the function.
+
+I think the issue is that the declaring of the turn wasnt global.
+even inputting it in the function as a parameter doesnt work
+
+11/2
+
+    let turn = selectButton[i].getAttribute("data-icon");
+the problem is that i shadowed by declaring twice
+        removed the let
+
+
+first click, nothing
+
+second click x on spot
+    o isnt defined
+
+When I play as X, <button id="box5" class="box"> is defined, but no reverse as O.
+
+It doesnt change the turn name in the announcement
+
+the turns are now defined, but i need to change them now
+
+
+x: 1 x then all o
+o:all 0
+
+the amount is data in "turn" is increasing increamentally, it isnt being replaced
+
+
+selectbutton[] is working
+
+
+11/4 it 
+
+marksquare does start off knowing the correct turn
+the loop is being run multiple times incredmentally after each click
+    once, then twice, then thrice etc
+
+    event listeners kept getting added
+
+
+    with {once:true}, each square will run the event multiple times, then once at a time.
+    this happens until you click off of the wquare, at which the process will restart
+
+    the while loop helps keep the values from piling up in one square
+          { once: true } keep the counter from moving over
+
+maybe use continue
+
+
+maybe i need to alter the remove event. or at least check on that/
+or add it
+
+turn is returning the entire button, not the value O or X

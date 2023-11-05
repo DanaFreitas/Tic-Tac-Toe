@@ -43,14 +43,14 @@ border-color:red;
     grid-gap:.5rem;
     width:90%;
     aspect-ratio: 1/1;
-    /* align-content: center; */
   }
 
 #turnAnnouncer {width:90%; text-align: center; font-size: 3rem;}
 
 
 
-  .box {border-color: black; border-style: solid; text-align: center; display: flex; justify-content: center; align-items: center;}
+  .box {border-color: black; border-style: solid; text-align: center; 
+    display: flex; justify-content: center; align-items: center; font-size: 4rem;}
 
    #announcementContainer {height:50%; width:90%; top: 25%; left: 5%;
        background-color: white; 
@@ -61,10 +61,15 @@ border-color:red;
         visibility: hidden;
   } 
 
-
+ 
     #beginningAnnouncement {
-      /* visibility:hidden; */
-     color:red;  z-index: 4; text-align: center;
+     color:red;  z-index: 2; text-align: center;
      background-color: white;
      font-size: 4rem;
           }  
+ 
+
+
+/* .box{
+  color:brown; text-decoration: wavy;
+} */

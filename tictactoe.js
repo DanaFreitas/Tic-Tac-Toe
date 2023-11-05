@@ -6,11 +6,7 @@ const beginningAnnouncement = document.getElementById("beginningAnnouncement");
 const anouncementContainer = document.getElementById("announcementContainer");
 let turnAnnouncer = document.getElementById("turnAnnouncer");
 let started = false;
-console.log(started)
 
-//const 2 = "2";
-//const Oplayer = document.getElementById("Oplayer");
-//const Xplayer = document.getElementById("Xplayer");
 let turn;
 
 let board = [[], [], []];
@@ -34,52 +30,44 @@ for (row = 0; row <= board.length; row++) {
   }
 }
 
-
-
 for (let j = 0; j < box.length; j++) {
-  box[j].addEventListener("click", selectplayer);
-
-  function selectplayer() {
-    for (let k = 0; k < selectButton.length; k++) {
-     
-      if(started === true) {
-        console.log("button azterketa")
-        console.log(started)
-        return;}
-     
-      selectButton[k].classList.add("animate");
-      warning.style.visibility = "visible";
-
-      setTimeout(() => {
-        selectButton[k].classList.remove("animate");
-        warning.style.visibility = "hidden";
-      }, 1000);
-
-     
-      
+  box[j].addEventListener("click", function () {
+    if (started === true) {
+      markSquare();
+    } else {
+      selectplayer();
     }
+  });
+}
+
+function selectplayer() {
+  for (let k = 0; k < selectButton.length; k++) {
+    if (started === true) {
+      return;
+    }
+
+    selectButton[k].classList.add("animate");
+    warning.style.visibility = "visible";
+
+    setTimeout(() => {
+      selectButton[k].classList.remove("animate");
+      warning.style.visibility = "hidden";
+    }, 100);
   }
 }
 
-
-
 for (let i = 0; i < selectButton.length; i++) {
   selectButton[i].addEventListener("click", function () {
+    if (started === true) {
+      return;
+    }
 
-
-if(started === true){
-  console.log("You need to reset the game.")
-  console.log(started)
-  return;
-}
-
-
-    let turn = selectButton[i].getAttribute("data-icon");
+    turn = selectButton[i].getAttribute("data-icon");
 
     begingame(turn);
 
-
-  let itStarted = true;  
+    let itStarted = true;
+    return turn;
   });
 }
 
@@ -87,21 +75,37 @@ function begingame(turn) {
   anouncementContainer.style.visibility = "visible";
   setTimeout(() => {
     anouncementContainer.style.visibility = "hidden";
-    turnAnnouncer.textContent=`It's ${turn}'s turn.`
-
+    turnAnnouncer.textContent = `It's ${turn}'s turn.`;
   }, 500);
-  console.log(turn)
-  console.log(started)
-return started = true;
+  return (started = true);
 }
 
-
-if(turn) {
-  for (let j = 0; j < box.length; j++) {
-    box[j].addEventListener("click", playinggame())
-
-    function playinggame()
-    {console.log(` azterketa playyinggame function`)}
-    
-  
-}}
+function markSquare() {
+  for (let k = 0; k < box.length; k++) {
+    box[k].addEventListener("click", function () {
+          if (box[k].textContent !== "") 
+            {return}
+          if (turn === "X") {
+            console.log(`${box[k]} for X button`);
+            console.log(k)
+            box[k].textContent = "X";
+            turn = selectButton[0].getAttribute("data-icon");
+            console.log(turn)
+            //  return turn;
+          } else if (turn === "O") {
+            console.log(`${box[k]} for O button`);
+            console.log(k)
+            box[k].textContent = "O";
+            turn = selectButton[1].getAttribute("data-icon");
+            console.log(turn)
+         } else {
+            console.log("Simulation failed.");
+          }
+           //return turn;
+          
+        
+      },
+      { once: true }
+    );
+  }
+}
