@@ -245,7 +245,30 @@ the loop is being run multiple times incredmentally after each click
 maybe use continue
 
 
+
+
 maybe i need to alter the remove event. or at least check on that/
 or add it
 
+
+
+turn = selectButton[0].getAttribute("data-icon");
+
+
 turn is returning the entire button, not the value O or X
+
+need to understand why the first click doesnt work, then, onto the algorithm
+
+colored the boxes brown
+
+find childish font
+
+
+11/6 having a test before the event listener shows its being triggered 9 times.
+box[k] does the same
+
+11/7 event bubbling
+
+11/9 there being two event listeners is a problem. get rid of the inner one. 
+
+if i click the third box, j is 2 but (Array point of)k is 0. why are thy different? 

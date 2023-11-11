@@ -34,6 +34,7 @@ border-color:red;
    #grid-container {
     display:flex; justify-content: center; align-items:center;  
     margin:0 auto;
+    color:brown;
 }
   
   #grid {
@@ -43,14 +44,16 @@ border-color:red;
     grid-gap:.5rem;
     width:90%;
     aspect-ratio: 1/1;
+    color:brown;
+
   }
 
 #turnAnnouncer {width:90%; text-align: center; font-size: 3rem;}
 
 
 
-  .box {border-color: black; border-style: solid; text-align: center; 
-    display: flex; justify-content: center; align-items: center; font-size: 4rem;}
+  .box {border-color: #402f1d; border-style: solid; text-align: center; border-width:.5rem;
+    display: flex; justify-content: center; align-items: center; font-size: 4rem; color:#402f1d;}
 
    #announcementContainer {height:50%; width:90%; top: 25%; left: 5%;
        background-color: white; 

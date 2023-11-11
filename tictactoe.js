@@ -33,7 +33,8 @@ for (row = 0; row <= board.length; row++) {
 for (let j = 0; j < box.length; j++) {
   box[j].addEventListener("click", function () {
     if (started === true) {
-      markSquare();
+      markSquare(box[j]);
+      console.log(` ${j} is j`)
     } else {
       selectplayer();
     }
@@ -80,32 +81,48 @@ function begingame(turn) {
   return (started = true);
 }
 
-function markSquare() {
+function markSquare(evt) {
+
+  console.log(evt)
+
+  if (evt.textContent){
+    console.log("Azterketa")
+  }
+
+  else {
+    console.log("Monkey")
+  }
+  
   for (let k = 0; k < box.length; k++) {
-    box[k].addEventListener("click", function () {
+   console.log([`${k} is k`])
+   //console.log(box.length)
+    // console.log("azterketa")
+    //console.log(box[k])
+    
+  //  box[k].addEventListener("click", function () {
           if (box[k].textContent !== "") 
             {return}
           if (turn === "X") {
             console.log(`${box[k]} for X button`);
-            console.log(k)
+            console.log(`Box number ${k}`)
             box[k].textContent = "X";
             turn = selectButton[0].getAttribute("data-icon");
-            console.log(turn)
-            //  return turn;
+     //       console.log(turn)
+              return;
           } else if (turn === "O") {
             console.log(`${box[k]} for O button`);
             console.log(k)
             box[k].textContent = "O";
             turn = selectButton[1].getAttribute("data-icon");
-            console.log(turn)
+          //  console.log(turn)
          } else {
             console.log("Simulation failed.");
           }
-           //return turn;
+           return;
           
         
-      },
-      { once: true }
-    );
+     // },
+    //        {once: true}
+//    );
   }
 }
