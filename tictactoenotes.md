@@ -272,3 +272,11 @@ box[k] does the same
 11/9 there being two event listeners is a problem. get rid of the inner one. 
 
 if i click the third box, j is 2 but (Array point of)k is 0. why are thy different? 
+
+
+11/11 for the function evt is the parameter and the button is the argument
+
+
+ideas for having the algorithm for win
+
+squarepart
