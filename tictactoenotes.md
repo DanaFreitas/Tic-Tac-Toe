@@ -279,4 +279,29 @@ if i click the third box, j is 2 but (Array point of)k is 0. why are thy differe
 
 ideas for having the algorithm for win
 
-squarepart
+figure out the row and column names
+
+
+three different types of algorithms running together
+
+if row1[rowall]
+
+if box[rowX][X]
+
+if box[rowx][x] AND box[rowx+1][x+!]
+
+if box[rowx][x] AND box[rowx-1][x-1]
+
+
+11/18
+
+wincon1: only works when start with x and happens everytime x is pressed
+        doesnt work in any conditions for o
+
+        I might not need the while statement. test to be sure
+
+11/19 
+
+I discovered the giant issue. board[row1] doesnt exist. the arrays in board are empty. box[row1] exists and its only box4. the values have not been correctly assigned. row2 and row3 dont exist. The buttons work because theyre tied to events. 
+
+need to reexamine the entire system of assign variables
