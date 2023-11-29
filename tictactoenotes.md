@@ -305,3 +305,78 @@ wincon1: only works when start with x and happens everytime x is pressed
 I discovered the giant issue. board[row1] doesnt exist. the arrays in board are empty. box[row1] exists and its only box4. the values have not been correctly assigned. row2 and row3 dont exist. The buttons work because theyre tied to events. 
 
 need to reexamine the entire system of assign variables
+
+
+11/23
+
+i need to do assigning of the board AND the boxes
+
+i need to push new variables onto the array
+
+      board[rownumber] = board[rownumber].push("Monkey")
+            wrong because it doesnt return 
+
+I need to declare the individual arrays in board
+
+    for loop X
+    
+    {
+        board[x] 
+    }
+
+
+in those declarations, popuate with box[x-x+2]
+
+
+when testing push()
+
+x = monkey.push(chimp)
+    x is the quantity
+    monkey is the array itself
+
+make an algorithm to test the values of an array
+    every() will help
+        for rows and columns
+    inclues() may help
+        test the tops corners, then move on?
+
+    i dont think indexof() will help?
+
+
+    11/24
+
+
+const winconvert board.every(function(board[0])
+console.log("Victory)
+  )
+
+  practice every()
+
+
+  11/25
+
+  I need to have the algorithms trigger based on the buttons being pressed. no need to review every single block. just ones related to the one click
+
+  shares name first or second []
+
+  [-1][-1] AND [+1][+1] true
+
+  OR
+
+  [-1][+1] AND [+1][-1] true 
+
+  values() might be useful. 
+
+  if 
+    array[evt-1][evt+1]...equal whatever, dealre you won
+        board[evt-1]
+
+
+        11/26
+
+    evt can pass one from function to function in a chain
+
+
+    11/29
+
+    try changing the names of the parameters. go from referencing the event to referencing the element in the event.
