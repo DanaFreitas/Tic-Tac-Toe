@@ -380,3 +380,119 @@ console.log("Victory)
     11/29
 
     try changing the names of the parameters. go from referencing the event to referencing the element in the event.
+
+    how to make evt.target transfer to the next functions over?
+
+    it works at the initial event listener
+
+    12/2
+
+      var button = document.getElementById('myButton');
+
+
+button.addEventListener('click', function(evt) {
+	if (button.classList.contains("monkey")) {
+  console.log("Part1 works")
+  Parttwo(evt.target)
+  }})
+function Parttwo(evt){
+if (button.classList.contains("monkey")) {
+  console.log(evt.textContent)
+
+}}
+
+I managed to pass down the values. I need to have the evt be a parameter and the evt.target be an argument. the argument is the value being used
+in context with the parameter, with is like a variable to be used in a function. its how the text of the event can be used in relation to the event, 
+
+12/3
+
+if the txtcontent of row
+    === txt.content
+        you win
+
+alorithm
+    loop through the row the evt is in.
+
+
+
+
+how to check where the event is taking place
+
+I need to find the relationship between the button bring triggered in the event and its location in the array. from there,
+start the algorithms
+
+first step. try using array findIndex
+
+look at last chatgpt answer
+
+12/4
+
+trying indexof
+
+the issue is indexof is for buttons and 2d arrays meant it was hitting an array
+do loop for inner part then use index of
+
+also, -1 means its not there
+
+horizontal search for other values that share i
+vertical make other values share button index
+
+12/15
+
+make a this for the current event?
+
+need to review code after long time off
+
+12/18
+
+
+
+Button found at row: 0 column: 1 tictactoe.js:140:15
+Entire board: 
+Array(3) [ (3) […], (3) […], (3) […] ]
+​
+0: Array(3) [ button#box1.box, button#box2.box, button#box3.box
+ ]
+​
+1: Array(3) [ button#box4.box, button#box5.box, button#box6.box
+ ]
+​
+2: Array(3) [ button#box7.box, button#box8.box, button#box9.box
+ ]
+​
+length: 3
+
+12/18
+
+for the wincons
+
+set up loops
+
+horz loop
+    find i
+        scan board
+            if is have the same values in the button, win
+
+ver loop
+    find buttonindex
+        scan board
+            if butoonindex has the same values in the button, win
+
+diagnal
+    take coords ex(1,1)
+        run algorithm
+            subtract each value by 1,
+                if some, do again
+                if not, ad 1,1
+            do -1,+1
+                if same, do again
+                if not, +1,-1
+
+
+12/19
+
+i need a way to verify every element is the same
+    with .every() I know how I could verify if they are all an X or an O, but not discriminate
+    maybe I could verify is the textcontent = that of the event
+
+    can do that

@@ -43,9 +43,9 @@ for (rownumber = 0; rownumber <= board.length; rownumber++) {
 
 
 for (let j = 0; j < box.length; j++) {
-  box[j].addEventListener("click", function() {
+  box[j].addEventListener("click", function(evt) {
     if (started === true) {
-      markSquare(box[j]);
+      markSquare(evt.target);
     } else {
       selectplayer();
     }
@@ -100,8 +100,11 @@ function markSquare(evt) {
     }
   }
   if (turn === "X") {
+    
     evt.textContent = "X";
     turn = selectButton[0].getAttribute("data-icon");
+    //console.log(this)
+    //console.log(evt.target)
     winCondition(evt);
     return;
   } else if (turn === "O") {
@@ -129,14 +132,52 @@ function markSquare(evt) {
 
 
 function winCondition(evt) {
- console.log(evt.textContent)
- console.log(evt.relatedTarget)
- console.log(this)
+  for (let i = 0; i < board.length; i++) {
+    const innerArray = board[i];
+    const buttonIndex = innerArray.indexOf(evt);
+   // console.log(innerArray)
+    if (buttonIndex !== -1) {
+      console.log("Button found at row:", i, "column:", buttonIndex);
+      console.log("Entire board:", board);
 
+      TestHorizontalWinCon(innerArray)
+
+      return;
+    }
+  }
+
+  function TestHorizontalWinCon(theRow) {
+
+//do i need to make an element to represent the row?
+
+const test2 = (element) => element.textContent === evt.textContent;
+
+const youWin = theRow.every(test2)
+
+if (youWin) {
+  console.log(`${evt.textContent} wins!`)
+}
+//check if each textcontent is the same
+  }
+  
+
+
+  console.log("Button not found in the board");
+  console.log("Entire board:", board);
+}
+
+
+// function winCondition(evt) {
+//   const figure = board.indexOf(evt) 
+//   console.log(evt)
+//   console.log(figure)
+ // console.log(board) }
+
+  
   //  if (horztestcheck === true){
     // console.log(`${turn} wins!`)
    // }
- }
+ 
 
   // if (board[rownumber].textContent === "X") {
   //   console.log(row1);
