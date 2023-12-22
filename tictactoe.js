@@ -18,8 +18,6 @@ for (rownumber = 0; rownumber <= board.length; rownumber++) {
     for (row1 = 0; row1 <= 2; row1++) {
       part1 = board[rownumber].push(box[row1]);
 
-
-
       // box[0].textContent =  board[rownumber][row1];
       //  console.log(board[rownumber][row1])
     }
@@ -41,9 +39,8 @@ for (rownumber = 0; rownumber <= board.length; rownumber++) {
   }
 }
 
-
 for (let j = 0; j < box.length; j++) {
-  box[j].addEventListener("click", function(evt) {
+  box[j].addEventListener("click", function (evt) {
     if (started === true) {
       markSquare(evt.target);
     } else {
@@ -78,9 +75,8 @@ for (let i = 0; i < selectButton.length; i++) {
 
     begingame(turn);
 
-      itStarted = true;
+    itStarted = true;
     return turn;
-    
   });
 }
 
@@ -100,7 +96,6 @@ function markSquare(evt) {
     }
   }
   if (turn === "X") {
-    
     evt.textContent = "X";
     turn = selectButton[0].getAttribute("data-icon");
     //console.log(this)
@@ -116,91 +111,95 @@ function markSquare(evt) {
   }
 
   return;
-
-  // },
-  //        {once: true}
-  //    );
 }
-
-// while (itStarted === true) {
-//   console.log("Azterketa");
-
-//   winCondition();
-//   console.log("Azterketa2");
-// }
-
-
 
 function winCondition(evt) {
   for (let i = 0; i < board.length; i++) {
     const innerArray = board[i];
     const buttonIndex = innerArray.indexOf(evt);
-   // console.log(innerArray)
     if (buttonIndex !== -1) {
-      console.log("Button found at row:", i, "column:", buttonIndex);
-      console.log("Entire board:", board);
-
-      TestHorizontalWinCon(innerArray)
-
+      TestHorizontalWinCon(innerArray);
+      TestVerticalWinCon(buttonIndex);
+      TestDiagonalWinCon(i, buttonIndex);
       return;
     }
   }
 
   function TestHorizontalWinCon(theRow) {
+    const TestTheElement = (element) => element.textContent === evt.textContent;
 
-//do i need to make an element to represent the row?
+    const youWin = theRow.every(TestTheElement);
 
-const test2 = (element) => element.textContent === evt.textContent;
-
-const youWin = theRow.every(test2)
-
-if (youWin) {
-  console.log(`${evt.textContent} wins!`)
-}
-//check if each textcontent is the same
+    if (youWin) {
+      console.log(`${evt.textContent} wins!`);
+    }
   }
-  
 
+  function TestVerticalWinCon(theColumn) {
+    let valueCollection = [];
 
-  console.log("Button not found in the board");
-  console.log("Entire board:", board);
+    for (i = 0; i < board.length; i++) {
+      const valueGrabber = board[i][theColumn].textContent;
+      if (valueGrabber) {
+        valueCollection.push(valueGrabber);
+      } else {
+        break;
+      }
+      //console.log(valueCollection);
+    }
+
+    if (JSON.stringify(valueCollection) === JSON.stringify(["O", "O", "O"])) {
+      console.log(`${evt.textContent} wins!`);
+    }
+
+    if (JSON.stringify(valueCollection) === JSON.stringify(["X", "X", "X"])) {
+      console.log(`${evt.textContent} wins!`);
+    }
+  }
+
+  function TestDiagonalWinCon(theRow, theColumn) {
+    const Coordinates = [theRow, theColumn];
+    const Symbol = evt.textContent;
+    let Ledger = 1;
+    for (let i = 0; i < board.length; i++) {
+      Coordinates[0] += 1;
+      Coordinates[1] += 1;
+
+      if (
+        typeof board[Coordinates[0]]  === "undefined" ||
+        typeof board[Coordinates[1]] === "undefined"
+      ) {
+      //  console.log(board[Coordinates[0]])
+        //console.log(board[Coordinates[1]])
+        //console.log("MONkey");
+        break;
+      }
+      CalculateTopLeftToBottomRight(Coordinates);
+    }
+
+    function CalculateTopLeftToBottomRight(Coordinates) {
+      let SecondSymbol = board[Coordinates[0]][Coordinates[1]];
+     //  console.log(SecondSymbol);
+      
+      //console.log(evt.textContent);
+
+      //need to find the textcontent of the next element
+
+      if (SecondSymbol.textContent === evt.textContent) {
+       // Coordinates[0] += 1;
+       // Coordinates[1] += 1;
+        Ledger += 1;
+      } else {
+        return;
+      }
+
+      if (Ledger === 3) {
+        console.log(`${evt.textContent} wins!`);
+      }
+
+      //console.log(board[Coordinates[0]][Coordinates[1]])
+    }
+
+    //i need to translate the coordinates to the board
+  }
 }
-
-
-// function winCondition(evt) {
-//   const figure = board.indexOf(evt) 
-//   console.log(evt)
-//   console.log(figure)
- // console.log(board) }
-
-  
-  //  if (horztestcheck === true){
-    // console.log(`${turn} wins!`)
-   // }
- 
-
-  // if (board[rownumber].textContent === "X") {
-  //   console.log(row1);
-  //   console.log("You win X");
-  //   console.log(row1.every((element) => element === "X"));
-  // } else if (box[rownumber].textContent === "O") {
-  //   console.log("You Win O");
-  //   console.log(row1.every((element) => element === "O"));
-  // }
-
-
-//if everyboard[x][whatever] is true 
-  //horizontal
-//if every whatever][x] is true 
-  //vertical
-//if every  [0][0]
-              //[0+1][0+1]
-                //[0+2][0+2]
-    //if every  [0][2]
-      //[0+1][0-1]
-      //[0+2][0-2]
-
-
-//console.log(board[1][1])
-
-//}

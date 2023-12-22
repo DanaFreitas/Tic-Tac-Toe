@@ -496,3 +496,68 @@ i need a way to verify every element is the same
     maybe I could verify is the textcontent = that of the event
 
     can do that
+
+    used every
+
+
+will naturally have some trouble with the verical.
+
+I am not testing a 3 element array. I am testing the first element in 3 different arrays.
+
+I need to record if its part 1 2 or 3 of one of the inner arrays
+check every inner array with the same index, and use eevrey
+
+I have the column number, i need to get the other column numbres. need the names of the innerarrays
+    board[0] board[1] board[2]
+        for loop them. 
+            for each loop. append the value to an array?
+
+the empty values are being added to the array, need to stop that
+
+12/20
+
+checkx and checko are flawed somehow.
+
+intended them to collect either the Xs or the Os. 
+
+used JSON stringify to make the arrays pass by value instead  of reference 
+
+Finished X
+
+diagnal
+    take coords ex(x,x)
+        run algorithm
+
+        record if an x or an o
+            do -1,-1
+                symbol same
+                    continue
+                symbol different
+                    stop
+                if error from hitting wall
+                    stop
+
+
+
+            do -1,+1
+                symbol same
+                    continue
+                symbol different
+                    stop
+                if error from hitting wall
+                    stop
+
+
+need to find a way to get first coordinate number
+
+found
+
+Will need to have a way for the coordinates to attach to the board
+
+12/21
+
+console.log(board[Coordinates[0]][Coordinates[1]])
+
+ledger doesnt work. need to find way to mak the loop terminate is I go off of the board
+
+can do the diagonal in one direction
