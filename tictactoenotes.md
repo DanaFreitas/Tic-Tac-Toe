@@ -561,3 +561,123 @@ console.log(board[Coordinates[0]][Coordinates[1]])
 ledger doesnt work. need to find way to mak the loop terminate is I go off of the board
 
 can do the diagonal in one direction
+
+need to make more efficient
+
+
+I have the coordinates
+I have the if undefined
+I have 4 things to do to them
+    +1/+1
+    +1/-1
+    -1/+1
+    -1/-1
+
+if undefined
+    do i try all 4
+
+do 1/1
+
+if that has right symbol, keep going
+    add to ledger
+
+if the adjacent block is empty or has another symbol or blank
+    reset and go to the next order
+
+how do i reset
+    do i do the physical math
+        ex -1/-1 followed by +1/-1
+    set the coordinates to their default and try again
+
+and the ledger? dont want to make warped lines
+    if ledger value is 2, it only checks once more
+        1/1 -1/-1  and 1/-1 -1/1 should be paired together somehow if so
+
+
+
+structure
+
+do i need loop?
+
+
+    coordinates set
+    if notthing wrong
+    1/1
+
+    if nothing wrong
+    1/1 again
+
+    if something wrong
+    reset
+    -1/-1
+    
+        
+
+
+12/23 
+
+do multiple calculations at once
+
+(1,1)
+
+do (+1/+1) (-1,-1) together
+OR (-1,+1) (+1,-1) together
+
+if both of those values are the same as the one registered, you win
+
+else, nothign happens
+
+
+be careful board[2][0] =/= board[2,0]
+
+const will make the values stay after the function comepletes. let wont
+
+
+12/25
+
+console.log(board[CoordBottomLeft])
+    Array [ (1) […], (1) […] ]
+    0: Array [ 0 ]
+    1: Array [ 2 ]
+    length: 2
+console.log(board[0][2])
+    <button id="box3" class="box" type="button">
+
+    the former is trying to unlock the propetry of an object
+    the later is access a node of an array
+
+
+    board[test] is assuming its a 1d array. need to make 2d.
+        having [0][2] makes an error as its 2 values in what should be one
+
+    console.log(board[CoordBottomLeft[0]][CoordBottomLeft[1]])
+
+
+if (the 2 sets of coord) same tetx as evt
+
+12/26
+
+just need to set up proper wincon
+
+made MASSIVE error. My code assumes the middle square is the last one. there are 8 where it isnt!
+I need to go back in my code. Have an algorithm that checks is a corner shares something and the subsequent does the same.
+...I think this is a branching algorithm.
+
+if corner.evt === evt.textcontent {
+
+function CheckAgain(corner.evt)
+
+}
+
+function CheckAgain(Thecorner){
+
+    if (Thecorner.textContent === evt){
+        You Win!!!
+    }
+}
+
+try catch seems to be something that should be limited
+
+12/27
+
+another issue i realized with what I typed above. THAT only works if the last piece is in the corner. I suppose I need both models...

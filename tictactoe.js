@@ -145,7 +145,6 @@ function winCondition(evt) {
       } else {
         break;
       }
-      //console.log(valueCollection);
     }
 
     if (JSON.stringify(valueCollection) === JSON.stringify(["O", "O", "O"])) {
@@ -157,49 +156,114 @@ function winCondition(evt) {
     }
   }
 
-  function TestDiagonalWinCon(theRow, theColumn) {
-    const Coordinates = [theRow, theColumn];
-    const Symbol = evt.textContent;
-    let Ledger = 1;
-    for (let i = 0; i < board.length; i++) {
-      Coordinates[0] += 1;
-      Coordinates[1] += 1;
+  function TestDiagonalWinCon(theRow,theColumn ) {
+    let Coordinates = [theRow,theColumn];
 
-      if (
-        typeof board[Coordinates[0]]  === "undefined" ||
-        typeof board[Coordinates[1]] === "undefined"
-      ) {
-      //  console.log(board[Coordinates[0]])
-        //console.log(board[Coordinates[1]])
-        //console.log("MONkey");
-        break;
-      }
-      CalculateTopLeftToBottomRight(Coordinates);
-    }
+    let CoordTopLeft = [Coordinates[0] - 1, Coordinates[1] - 1];
+    let CoordBottomRight = [[Coordinates[0] + 1],[Coordinates[1] + 1]];
 
-    function CalculateTopLeftToBottomRight(Coordinates) {
-      let SecondSymbol = board[Coordinates[0]][Coordinates[1]];
-     //  console.log(SecondSymbol);
+    let CoordTopRight = [Coordinates[0] - 1, Coordinates[1] + 1];
+
+    let CoordBottomLeft = [[Coordinates[0] + 1], [Coordinates[1] - 1]];
+
+
+    if (
+      board[CoordBottomLeft[0]] && 
+      board[CoordBottomLeft[0]][CoordBottomLeft[1]] 
+    ) {
+      CoordBottomLeftContent = board[CoordBottomLeft[0]][CoordBottomLeft[1]].textContent;
+    } else {
       
-      //console.log(evt.textContent);
-
-      //need to find the textcontent of the next element
-
-      if (SecondSymbol.textContent === evt.textContent) {
-       // Coordinates[0] += 1;
-       // Coordinates[1] += 1;
-        Ledger += 1;
-      } else {
-        return;
-      }
-
-      if (Ledger === 3) {
-        console.log(`${evt.textContent} wins!`);
-      }
-
-      //console.log(board[Coordinates[0]][Coordinates[1]])
+      console.error("CoordBottomLeft indices are out of bounds");
+    }
+    
+    
+    if (
+      board[CoordTopLeft[0]] &&
+      board[CoordTopLeft[0]][CoordTopLeft[1]] 
+    ) {
+      CoordTopLeftContent = board[CoordTopLeft[0]][CoordTopLeft[1]].textContent;
+    } else {
+      
+      console.error("CoordTopLeft indices are out of bounds");
     }
 
-    //i need to translate the coordinates to the board
+
+    if (
+      board[CoordBottomRight[0]] && 
+      board[CoordBottomRight[0]][CoordBottomRight[1]] 
+    ) {
+      CoordBottomRightContent = board[CoordBottomRight[0]][CoordBottomRight[1]].textContent;
+    } else {
+      console.error("CoordBottomRight indices are out of bounds");
+    }
+    
+    if (
+      board[CoordTopRight[0]] && 
+      board[CoordTopRight[0]][CoordTopRight[1]] 
+    ) {
+      CoordTopRightContent = board[CoordTopRight[0]][CoordTopRight[1]].textContent;
+    } else {
+      console.error("CoordTopRight indices are out of bounds");
+    }
+
+ //  let CoordTopLeftContent = (board[CoordTopLeft[0]][CoordTopLeft[1]].textContent)
+   // let CoordBottomLeftContent = ((board[CoordBottomLeft[0]][CoordBottomLeft[1]]).textContent)
+    //let CoordTopRightContent = (board[CoordTopRight[0]][CoordTopRight[1]].textContent)
+
+    // let CoordBottomRightContent = (board[CoordBottomRight[0]][CoordBottomRight[1]].textContent)
+
+           if (
+             typeof board === "undefined" ||
+             typeof board === "undefined"
+           ) {
+return           }
+
+if ((CoordTopLeftContent && CoordBottomRightContent === evt.textContent) || (CoordBottomLeftContent && CoordTopRightContent === evt.textContent)) {
+  console.log("Victory")
+}
+else {
+  console.log("Fail")
+  return;}
+
+
+    //if ()
+
+    //const Symbol = evt.textContent;
+    // let Ledger = 1;
+    //     for (let i = 0; i < board.length; i++) {
+
+    //       if (
+    //         typeof board[Coordinates[0]]  !== "undefined" &&
+    //         typeof board[Coordinates[1]] !== "undefined"
+    //       )
+    // {
+    //       Coordinates[0] += 1;
+    //       Coordinates[1] += 1;
+    // }
+
+    //       if (
+    //         typeof board[Coordinates[0]]  === "undefined" ||
+    //         typeof board[Coordinates[1]] === "undefined"
+    //       ) {
+    //         break;
+    //       }
+    //       CalculateTopLeftToBottomRight(Coordinates);
+    //     }
+
+    //     function CalculateTopLeftToBottomRight(Coordinates) {
+    //       let SecondSymbol = board[Coordinates[0]][Coordinates[1]];
+
+    //       if (SecondSymbol.textContent === evt.textContent) {
+    //         Ledger += 1;
+    //       } else {
+    //         return;
+    //       }
+
+    //       if (Ledger === 3) {
+    //         console.log(`${evt.textContent} wins!`);
+    //       }
+
+    //     }
   }
 }
