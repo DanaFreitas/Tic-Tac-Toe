@@ -98,8 +98,6 @@ function markSquare(evt) {
   if (turn === "X") {
     evt.textContent = "X";
     turn = selectButton[0].getAttribute("data-icon");
-    //console.log(this)
-    //console.log(evt.target)
     winCondition(evt);
     return;
   } else if (turn === "O") {
@@ -156,114 +154,106 @@ function winCondition(evt) {
     }
   }
 
-  function TestDiagonalWinCon(theRow,theColumn ) {
-    let Coordinates = [theRow,theColumn];
+  function TestDiagonalWinCon(theRow, theColumn) {
+    console.log(turn)
+    let Coordinates = [theRow, theColumn];
 
     let CoordTopLeft = [Coordinates[0] - 1, Coordinates[1] - 1];
-    let CoordBottomRight = [[Coordinates[0] + 1],[Coordinates[1] + 1]];
+    let CoordBottomRight = [Coordinates[0] + 1, Coordinates[1] + 1];
 
     let CoordTopRight = [Coordinates[0] - 1, Coordinates[1] + 1];
 
-    let CoordBottomLeft = [[Coordinates[0] + 1], [Coordinates[1] - 1]];
+    let CoordBottomLeft = [Coordinates[0] + 1, Coordinates[1] - 1];
 
-
-    if (
-      board[CoordBottomLeft[0]] && 
-      board[CoordBottomLeft[0]][CoordBottomLeft[1]] 
-    ) {
-      CoordBottomLeftContent = board[CoordBottomLeft[0]][CoordBottomLeft[1]].textContent;
-    } else {
-      
-      console.error("CoordBottomLeft indices are out of bounds");
+    if (typeof board === "undefined" || typeof board === "undefined") {
+      return;
     }
-    
-    
+
     if (
-      board[CoordTopLeft[0]] &&
-      board[CoordTopLeft[0]][CoordTopLeft[1]] 
+      board[CoordBottomLeft[0]] &&
+      board[CoordBottomLeft[0]][CoordBottomLeft[1]]
     ) {
+      CoordBottomLeftContent =
+        board[CoordBottomLeft[0]][CoordBottomLeft[1]].textContent;
+    }
+
+    if (board[CoordTopLeft[0]] && board[CoordTopLeft[0]][CoordTopLeft[1]]) {
       CoordTopLeftContent = board[CoordTopLeft[0]][CoordTopLeft[1]].textContent;
-    } else {
-      
-      console.error("CoordTopLeft indices are out of bounds");
     }
-
 
     if (
-      board[CoordBottomRight[0]] && 
-      board[CoordBottomRight[0]][CoordBottomRight[1]] 
+      board[CoordBottomRight[0]] &&
+      board[CoordBottomRight[0]][CoordBottomRight[1]]
     ) {
-      CoordBottomRightContent = board[CoordBottomRight[0]][CoordBottomRight[1]].textContent;
-    } else {
-      console.error("CoordBottomRight indices are out of bounds");
-    }
-    
-    if (
-      board[CoordTopRight[0]] && 
-      board[CoordTopRight[0]][CoordTopRight[1]] 
-    ) {
-      CoordTopRightContent = board[CoordTopRight[0]][CoordTopRight[1]].textContent;
-    } else {
-      console.error("CoordTopRight indices are out of bounds");
+      CoordBottomRightContent =
+        board[CoordBottomRight[0]][CoordBottomRight[1]].textContent;
     }
 
- //  let CoordTopLeftContent = (board[CoordTopLeft[0]][CoordTopLeft[1]].textContent)
-   // let CoordBottomLeftContent = ((board[CoordBottomLeft[0]][CoordBottomLeft[1]]).textContent)
-    //let CoordTopRightContent = (board[CoordTopRight[0]][CoordTopRight[1]].textContent)
+    if (board[CoordTopRight[0]] && board[CoordTopRight[0]][CoordTopRight[1]]) {
+      CoordTopRightContent =
+        board[CoordTopRight[0]][CoordTopRight[1]].textContent;
+    }
 
-    // let CoordBottomRightContent = (board[CoordBottomRight[0]][CoordBottomRight[1]].textContent)
+    let PossibleCorners = [
+      CoordTopLeftContent,
+      CoordBottomLeftContent,
+      CoordTopRightContent,
+      CoordBottomRightContent,
+    ];
 
-           if (
-             typeof board === "undefined" ||
-             typeof board === "undefined"
-           ) {
-return           }
+    for (let Corner of PossibleCorners) {
+      if (Corner === evt.textContent) {
+        NextBoxToCheck(Coordinates, Corner);
+        console.log(turn);
+      }
+    }
+    function NextBoxToCheck(Coordinates, FirstPart) {
+      switch ((Coordinates, FirstPart)) {
+        case CoordTopLeftContent:
+          SecondPart(CoordBottomRight);
+          console.log(turn);
 
-if ((CoordTopLeftContent && CoordBottomRightContent === evt.textContent) || (CoordBottomLeftContent && CoordTopRightContent === evt.textContent)) {
-  console.log("Victory")
-}
-else {
-  console.log("Fail")
-  return;}
+          break;
 
+        case CoordTopRightContent:
+          SecondPart(CoordBottomLeft);
+          console.log(turn);
 
-    //if ()
+          break;
 
-    //const Symbol = evt.textContent;
-    // let Ledger = 1;
-    //     for (let i = 0; i < board.length; i++) {
+        case CoordBottomLeftContent:
+          SecondPart(CoordTopRight);
+          console.log(turn);
 
-    //       if (
-    //         typeof board[Coordinates[0]]  !== "undefined" &&
-    //         typeof board[Coordinates[1]] !== "undefined"
-    //       )
-    // {
-    //       Coordinates[0] += 1;
-    //       Coordinates[1] += 1;
+          break;
+
+        case CoordBottomRightContent:
+          SecondPart(CoordTopLeft);
+          console.log(turn);
+
+          break;
+
+        default:
+          console.log("Error with NextBoxToCheck");
+      }
+
+      function SecondPart(TheThirdBox) {
+      //  console.log(TheThirdBox);
+        let ThirdBoxContent = board[TheThirdBox[0]][TheThirdBox[1]].textContent;
+        console.log(turn);
+
+        //   console.log(ThirdBoxContent);
+        if (ThirdBoxContent === evt.textContent) {
+          console.log(`${evt.textContent} wins!`);
+        }
+      }
+    }
+
+    // if ((CoordTopLeftContent && CoordBottomRightContent === evt.textContent) || (CoordBottomLeftContent && CoordTopRightContent === evt.textContent)) {
+    //   console.log("Victory")
     // }
-
-    //       if (
-    //         typeof board[Coordinates[0]]  === "undefined" ||
-    //         typeof board[Coordinates[1]] === "undefined"
-    //       ) {
-    //         break;
-    //       }
-    //       CalculateTopLeftToBottomRight(Coordinates);
-    //     }
-
-    //     function CalculateTopLeftToBottomRight(Coordinates) {
-    //       let SecondSymbol = board[Coordinates[0]][Coordinates[1]];
-
-    //       if (SecondSymbol.textContent === evt.textContent) {
-    //         Ledger += 1;
-    //       } else {
-    //         return;
-    //       }
-
-    //       if (Ledger === 3) {
-    //         console.log(`${evt.textContent} wins!`);
-    //       }
-
-    //     }
+    // else {
+    //   console.log("Fail")
+    //   return;}
   }
 }

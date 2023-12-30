@@ -681,3 +681,48 @@ try catch seems to be something that should be limited
 12/27
 
 another issue i realized with what I typed above. THAT only works if the last piece is in the corner. I suppose I need both models...
+
+For check again, I need two things. 
+
+To do the orginal check for the second point
+to do the reverse check for the original point
+
+switch statement?
+
+
+switch
+
+
+
+
+
+12/28
+
+switch(FirstPart) {
+
+    case CoordTopLeftContent:
+        Newpart(CoordBottomContent)
+}
+    
+12/29
+
+    just need to get that condition correctly
+
+    look at line 223
+
+    needed to use for...of to have one of multiple possible variables bre the input.
+
+    NEED TO FIGURE OUT WHY ITS SAYING THE WRONG TEAM IS WINNING.
+    
+    For some reason, its only an issue diagonally
+
+    also, an issue is that its printing the wining statement multiple times
+        trying to find pattern
+
+
+        for wrong team, the issue is I typed
+        "turn"
+        not
+        "evt.textContent"
+
+the issue with the printing multiple statements has something to do with the for...of loop. Although my possibilities were limited, I didnt have a problem before
