@@ -154,10 +154,28 @@ function winCondition(evt) {
     }
   }
 
+  //add evt to parameter?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   function TestDiagonalWinCon(theRow, theColumn) {
-    console.log(turn)
+    //coordinates of the original evt box
     let Coordinates = [theRow, theColumn];
 
+
+    //coordinates of the boxes to their corners
     let CoordTopLeft = [Coordinates[0] - 1, Coordinates[1] - 1];
     let CoordBottomRight = [Coordinates[0] + 1, Coordinates[1] + 1];
 
@@ -165,9 +183,12 @@ function winCondition(evt) {
 
     let CoordBottomLeft = [Coordinates[0] + 1, Coordinates[1] - 1];
 
-    if (typeof board === "undefined" || typeof board === "undefined") {
-      return;
-    }
+    // if (typeof board === "undefined" || typeof board === "undefined") {
+    //   return;
+    // }
+
+
+  //assigning variables for the other corners
 
     if (
       board[CoordBottomLeft[0]] &&
@@ -194,6 +215,8 @@ function winCondition(evt) {
         board[CoordTopRight[0]][CoordTopRight[1]].textContent;
     }
 
+
+    //grouping the corners efficiently in an array
     let PossibleCorners = [
       CoordTopLeftContent,
       CoordBottomLeftContent,
@@ -201,59 +224,134 @@ function winCondition(evt) {
       CoordBottomRightContent,
     ];
 
+
+    //run through all of the corners
     for (let Corner of PossibleCorners) {
+
+  //the the button clicked shares a shape with one of the corners
       if (Corner === evt.textContent) {
-        NextBoxToCheck(Coordinates, Corner);
-        console.log(turn);
+
+        CheckBoxOppositeDirection(Coordinates, Corner);
+        CheckBoxSameDirection(Coordinates, Corner);
+
+    
+
+
       }
+
+      //declare an else if game state has been won
     }
-    function NextBoxToCheck(Coordinates, FirstPart) {
+
+
+
+
+
+
+
+//coordinates of the evt and the coordinates of the corner
+    function CheckBoxOppositeDirection(Coordinates, FirstPart) {
+      let check = 0
+
+      //take the first two variables. 
+      //issue! Things change depending on the order the symbols are placed.
       switch ((Coordinates, FirstPart)) {
         case CoordTopLeftContent:
-          SecondPart(CoordBottomRight);
-          console.log(turn);
+          OppositeDirection(CoordBottomRight);
 
           break;
 
         case CoordTopRightContent:
-          SecondPart(CoordBottomLeft);
-          console.log(turn);
+          OppositeDirection(CoordBottomLeft);
 
           break;
 
         case CoordBottomLeftContent:
-          SecondPart(CoordTopRight);
-          console.log(turn);
+          OppositeDirection(CoordTopRight);
 
           break;
 
         case CoordBottomRightContent:
-          SecondPart(CoordTopLeft);
-          console.log(turn);
+          OppositeDirection(CoordTopLeft);
 
           break;
 
         default:
-          console.log("Error with NextBoxToCheck");
+          console.log("Error with CheckBoxOppositeDirection");
       }
 
-      function SecondPart(TheThirdBox) {
-      //  console.log(TheThirdBox);
+      function OppositeDirection(TheThirdBox) {
         let ThirdBoxContent = board[TheThirdBox[0]][TheThirdBox[1]].textContent;
-        console.log(turn);
 
-        //   console.log(ThirdBoxContent);
         if (ThirdBoxContent === evt.textContent) {
+
           console.log(`${evt.textContent} wins!`);
+          check += 1;
+          console.log(check)
+          return;
         }
+        else {
+          check += 100
+          console.log("Simluation failed")
+          console.log(check)
+          return;
+
+        }
+
+      }
+    // return;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    function CheckBoxSameDirection(Coordinates, FirstPart) {
+      let CoordTopLeftAdjusted = [Coordinates[0] - 2, Coordinates[1] - 2];
+      let CoordBottomRightAdjusted = [Coordinates[0] + 2, Coordinates[1] + 2];
+      let CoordTopRightAdjusted = [Coordinates[0] - 2, Coordinates[1] + 2];
+      let CoordBottomLeftAdjusted = [Coordinates[0] + 2, Coordinates[1] - 2];
+
+      switch ((Coordinates, FirstPart)) {
+        case CoordTopLeftContent:
+          SameDirection(CoordTopLeftAdjusted);
+          break;
+
+        case CoordTopRightContent:
+          SameDirection(CoordTopRightAdjusted);
+          break;
+
+        case CoordBottomLeftContent:
+          SameDirection(CoordBottomLeftAdjusted);
+          break;
+
+        case CoordBottomRightContent:
+          SameDirection(CoordBottomRightAdjusted);
+          break;
+
+        default:
+          console.log("Error with CheckBoxSameDirection");
       }
     }
 
-    // if ((CoordTopLeftContent && CoordBottomRightContent === evt.textContent) || (CoordBottomLeftContent && CoordTopRightContent === evt.textContent)) {
-    //   console.log("Victory")
-    // }
-    // else {
-    //   console.log("Fail")
-    //   return;}
+    function SameDirection(TheThirdBox) {
+      let ThirdBoxContent = board[TheThirdBox[0]][TheThirdBox[1]].textContent;
+
+      if (ThirdBoxContent === evt.textContent) {
+        console.log(CoordTopLeftContent);
+        console.log(`${evt.textContent} wins!`);
+      return;
+      } else {
+        console.log("Simulation failed");
+        return;
+      }
+    }
   }
 }

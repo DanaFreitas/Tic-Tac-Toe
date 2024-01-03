@@ -726,3 +726,88 @@ switch(FirstPart) {
         "evt.textContent"
 
 the issue with the printing multiple statements has something to do with the for...of loop. Although my possibilities were limited, I didnt have a problem before
+
+10/30
+
+I think I got it?
+
+Need to fulfill condition to have the diagonal condition fulfilled for 123, not just 132
+
+have function where the first math is repeated a second time
+
+ex -1/+1 -> -1/+1
+
+samedirection and opposite direction functions can likely be combined. need to do testing first.
+
+managed to get same direction to work, but opposite. getting in each others way
+    will try switching the order of the functions
+        thats the reason!
+    need to make it so that if one fails, the other will take its place
+
+
+check chatgpt. the 1st function stopping the second
+
+
+123123
+an undefined variable can matter even in a consoe.log statement
+
+
+
+when otherdirection first function and test otherdirection
+you win
+    286  Uncaught TypeError: can't access property "-1", board[TheThirdBox[0]] is undefined
+
+when otherdirection first function and test samedirection
+    286 Uncaught TypeError: can't access property "-1", board[TheThirdBox[0]] is undefined
+    246.31 Uncaught TypeError: can't access property "textContent", board[TheThirdBox[0]][TheThirdBox[1]] is undefined
+    264.31 Uncaught TypeError: can't access property 3, board[TheThirdBox[0]] is undefined
+
+
+  when same direction first function and test otherdirection
+    287 Uncaught TypeError: can't access property "-1", board[TheThirdBox[0]] is undefined
+
+when samedirection first function and test samedirection
+    285.29 Uncaught TypeError: can't access property "-1", board[TheThirdBox[0]] is undefined
+    285.29Uncaught TypeError: can't access property 0, board[TheThirdBox[0]] is undefined
+    288/289 you win
+    245 Uncaught TypeError: can't access property 3, board[TheThirdBox[0]] is undefined
+
+check chat gpt
+
+
+have the first part get a check variable that goes off. give second function an if statement checking for that
+
+
+1/1
+
+The second function is set off if I do 0 (0,0) X (0,1) 0{1,1}. That isn't diagonal and shouldnt be fulfilling the conditions. need to look over the functions
+
+No equivalent issue the opposite way. Still need to look over functions again
+
+going over logical steps
+
+click tile
+
+declare temporary variables to represent corners relative to file
+    use math to compare the positions on array
+
+run function to compare the content of each corner to the event content
+    if false, move on
+   if true...
+
+to go opposite direction
+    record the direction of the corner relative to the evt
+    have swtich statements that correspond the corner to its opposite
+    compare that corner to the evt
+        if true, win
+
+to go same direction
+    use variable to name that second square
+    
+
+
+assign corners related to that tile to varia
+
+
+1/3 going through code. making comments for self
+
