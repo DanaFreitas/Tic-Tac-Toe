@@ -811,3 +811,77 @@ assign corners related to that tile to varia
 
 1/3 going through code. making comments for self
 
+ctrl+k, ctrl, collapse text
+
+NEW IDEA
+
+js 
+record the coordinates of the evt and a corner
+
+if one duo is the same, assign variables to both
+assign coordinates to both
+
+
+assign direction based on orientation of that corner
+	these will be your functions
+	
+
+topleft/bottom right	lefttoright
+topright/bottomleft     righttoleft
+
+each funtion checks corners based on coordinates given
+if either of those corners shares a symbol with one of the first two, you win
+
+try using entries() + for of loop to link the values of both the coordinates and thier textcontent
+
+1/3
+
+for of statements are loop multiple times per click. if I get any wonky values, that is why
+
+console.log(CornerValue[0], CornerValue[1]) is functioning as expected
+
+make sure whether im assigning variables or arrays
+
+if statements to prevent errors
+
+
+
+
+
+doing to the corners is fine
+if i do to the middle, I get 
+
+Array [ 0, 0 ]
+tictactoe.js:242:14
+Array [ -1, -1 ]
+tictactoe.js:243:17
+Uncaught TypeError: can't access property "-1", board[ExtendTopLeft[0]] is undefined
+
+I need to have it scan the topleft AND the bottom right to solve this 
+
+
+1/4
+
+          board[ExtendTopLeft[0]] gives me an array
+                 console.log(ExtendBottomRight); gives an integer
+
+an issue with the for of statement is that it is only checking 1 corner at a time
+I need to either store all possible corners 
+ORRRR
+I need to have a way to save a value and access it next loop
+
+maybe use the content array
+    make new variables, have them store value for a loop(s)?
+    store the corner values and then alter based on those as opposed to the evt?
+
+if two opposing corner contents are the same
+    if so, you win
+
+    if topleft and bottom right of evt be the same
+
+if not...
+    have the "extended varables be based on those
+
+    topleft extended
+
+    if evt, topleft and topleft extended are the same
