@@ -105,7 +105,7 @@ function markSquare(evt) {
     turn = selectButton[1].getAttribute("data-icon");
     winCondition(evt);
   } else {
-    console.log("Simulation failed.");
+    console.log("There is an issue with makring the squares.");
   }
 
   return;
@@ -157,16 +157,16 @@ function winCondition(evt) {
   //add evt to parameter?
 
   function TestDiagonalWinCon(theRow, theColumn) {
-    //coordinates of the original evt box
-    let Coordinates = [theRow, theColumn];
+    //EventCoordinates of the original evt box
+    let EventCoordinates = [theRow, theColumn];
 
-    //coordinates of the boxes to their corners
-    let CoordTopLeft = [Coordinates[0] - 1, Coordinates[1] - 1];
-    let CoordBottomRight = [Coordinates[0] + 1, Coordinates[1] + 1];
+    //EventCoordinates of the boxes to their corners
+    let CoordTopLeft = [EventCoordinates[0] - 1, EventCoordinates[1] - 1];
+    let CoordBottomRight = [EventCoordinates[0] + 1, EventCoordinates[1] + 1];
 
-    let CoordTopRight = [Coordinates[0] - 1, Coordinates[1] + 1];
+    let CoordTopRight = [EventCoordinates[0] - 1, EventCoordinates[1] + 1];
 
-    let CoordBottomLeft = [Coordinates[0] + 1, Coordinates[1] - 1];
+    let CoordBottomLeft = [EventCoordinates[0] + 1, EventCoordinates[1] - 1];
 
     // if (typeof board === "undefined" || typeof board === "undefined") {
     //   return;
@@ -204,7 +204,7 @@ function winCondition(evt) {
     let PossibleCorners = [
       CoordTopLeft,
       CoordBottomLeft,
-      CoordTopLeft,
+      CoordTopRight,
       CoordBottomRight,
     ];
 
@@ -215,198 +215,149 @@ function winCondition(evt) {
       CoordBottomRightContent,
     ];
     //run through all of the corner boxes relative to  of the evt
-    for (let [index, CornerValue] of PossibleCorners.entries()) {
 
-      let PossibleCornerResult1 = PossibleCorners[0]
-      let PossibleCornerResult2 = PossibleCorners[1]
-      let PossibleCornerResult3 = PossibleCorners[2]
-      let PossibleCornerResult4 = PossibleCorners[3]
+    //the number of "triggers" based on the
+    //index is number of the array 0-3
+    //CornerEventCoordinates is the value of possiblecorners, key-object
+    //possiblecorners is the name of the array, with each value being a COORDINATE
+    //entries creates entries giving each of the values in an array a key
+    for (let [index, CornerCoordinates] of PossibleCorners.entries()) {
+      //if (typeof PossibleCorners !== 'undefined') {      }
 
+      let CornerValue = PossibleCornerContent[index];
+      let CurrentEventValue = evt.textContent;
 
-      console.log(PossibleCornerResult1)
-      console.log(PossibleCornerResult2)
-      console.log(PossibleCornerResult3)
-      console.log(PossibleCornerResult4)
-
-      //if (typeof PossibleCorners !== 'undefined')
-      if (typeof PossibleCorners !== 'undefined') {
-      test1++
-      console.log(test1)
-      test2--
-      console.log(test2)
-      console.log(PossibleCorners)
-      }
-      // declares it an x or an 0 for the specific corner
-      let ContentValue = PossibleCornerContent[index];
-      console.log(ContentValue)
-      //run one or two of the functions
-      if (
-        (CornerValue === CoordTopLeft && ContentValue) ||
-        (CornerValue === CoordBottomRight && ContentValue)
-      ) {
-        TopLeftToBottomRight(CornerValue, ContentValue, evt);
+      if (CornerValue === CurrentEventValue) {
+        TestForVictory(EventCoordinates, CornerCoordinates);
       }
 
-      if (
-        (CornerValue === CoordTopRight && ContentValue) ||
-        (CornerValue === CoordBottomLeft && ContentValue)
-      ) {
-        TopRightToBottomLeft();
+      else{
+        continue;
       }
 
-      function TopLeftToBottomRight(CornerValue, ContentValue, evt) {
+      function TestForVictory(Firstvalue, Secondvalue) {
+        //console.log(`${Firstvalue[0]} is the first coordinate of the first panel`)
+        //console.log(`${Secondvalue[0]} is the first coordinate of the seond panel`)
 
+        //console.log(`${Firstvalue[1]} is the second coordinate of the first panel`)
+        //console.log(`${Secondvalue[1]} is the second coordinate of the seond panel`)
 
-
-        let ExtendTopLeft = [CornerValue[0] - 1, CornerValue[1] - 1];
-        let ExtendTopLeftContent = board[ExtendTopLeft[0]][ExtendTopLeft[1]].textContent;
-        
-        let ExtendBottomRight = [CornerValue[0] + 2, CornerValue[1] + 2];
-        let ExtendBottomRightContent = board[ExtendBottomRight[0]][ExtendBottomRight[1]].textContent;
-
-
-        if (
-          board[ExtendTopLeft[0]] >= 0 &&
-          board[ExtendTopLeft[0]] < board.length &&
-          board[ExtendTopLeft[1]] >= 0 &&
-          board[ExtendTopLeft[1]] < board[0].length
+        if (Firstvalue[0] > Secondvalue[0] && Firstvalue[1] > Secondvalue[1]) {
+          TopLeftToBottomRight(Firstvalue, Secondvalue);
+        } else if (
+          Firstvalue[0] > Secondvalue[0] ||
+          Firstvalue[1] > Secondvalue[1]
         ) {
-          console.log(ExtendTopLeftContent);
-          console.log("Success!!!");
-        } else {
-          //console.log(board[ExtendTopLeft[0]])
-          console.log(ExtendTopLeftContent);
-          console.log("Top Left error");
-        }
-
-
-
-
-        if (
-          board[ExtendBottomRight[0]] >= 0 &&
-          board[ExtendBottomRight[0]] < board.length &&
-          board[ExtendBottomRight[1]] >= 0 &&
-          board[ExtendBottomRight[1]] < board[0].length
-        ) { console.log("Does this work?")
-        } else {
-          console.log(ExtendBottomRightContent);
-          console.log("Bottom Right error");
-        }
-
-        if (
-          ExtendTopLeftContent === ContentValue ||
-          ExtendBottomRightContent === ContentValue
-        ) {
-          console.log("Azterketa");
-        } else {
-          console.log("Simulation failed!");
+          TopRightToBottomLeft(Firstvalue, Secondvalue);
         }
       }
-    }
 
-    //the the button clicked shares a shape with one of the corners
+      function TopLeftToBottomRight(Firstvalue, Secondvalue) {
+        console.log(`${Firstvalue} is the first value`);
+        console.log(`${Secondvalue} is the second value`);
 
-    if (Corner === evt.textContent) {
-      let SecondShapeCoordinates = this.PossibleCorner;
-      console.log(Corner.board);
-      console.log(SecondShapeCoordinates);
 
-      //
 
-      //  CheckBoxOppositeDirection(Coordinates, Corner);
-      //CheckBoxSameDirection(Coordinates, Corner);
-    }
+        if (Firstvalue[0] < Secondvalue[0]) {
+         TopLeftExtend = Firstvalue.map((x) => x - 1);
+          console.log(TopLeftExtend);
+        } else if (Firstvalue[0] > Secondvalue[0]) {
+           TopLeftExtend = Secondvalue.map((x) => x - 1);
+        } else {
+          console.log("There is an issue with extending the values");
+        }
 
-    //declare an else if game state has been won
-  }
+        let ExtendedValue 
+         if(typeof TopLeftExtend !== 'undefined' && TopLeftExtend) {
+           console.log("Inside TopLeftExtend condition");
+             ExtendedValue = board[TopLeftExtend[0]][TopLeftExtend[1]].textContent;
+            console.log(ExtendedValue)
+          
+          }
+          else
+          if(typeof BottomRightExtend !== 'undefined' &&  BottomRightExtend) {
+          console.log("Inside Bottomright condition");
+            ExtendedValue = board[BottomRightExtend[0]][BottomRightExtend[1]].textContent;
+           console.log(ExtendedValue)
 
-  //coordinates of the evt and the coordinates of the corner
-  function CheckBoxOppositeDirection(Coordinates, FirstPart) {
-    let check = 0;
+         }
 
-    //take the first two variables.
-    //issue! Things change depending on the order the symbols are placed.
-    switch ((Coordinates, FirstPart)) {
-      case CoordTopLeftContent:
-        OppositeDirection(CoordBottomRight);
+         else {
+          console.log("It isnt working!")
+         }
 
-        break;
 
-      case CoordTopRightContent:
-        OppositeDirection(CoordBottomLeft);
+         if (((ExtendedValue) === (CurrentEventValue && CornerValue))) {
+          console.log(`${evt.textContent} wins!`)
+         }
+         else {
+          console.log(CurrentEventValue, CornerValue,BottomRightExtendedValue)
+         }
 
-        break;
 
-      case CoordBottomLeftContent:
-        OppositeDirection(CoordTopRight);
-
-        break;
-
-      case CoordBottomRightContent:
-        OppositeDirection(CoordTopLeft);
-
-        break;
-
-      default:
-        console.log("Error with CheckBoxOppositeDirection");
-    }
-
-    function OppositeDirection(TheThirdBox) {
-      let ThirdBoxContent = board[TheThirdBox[0]][TheThirdBox[1]].textContent;
-
-      if (ThirdBoxContent === evt.textContent) {
-        console.log(`${evt.textContent} wins!`);
-        check += 1;
-        console.log(check);
-        return;
-      } else {
-        check += 100;
-        console.log("Simluation failed");
-        console.log(check);
-        return;
       }
-    }
-    // return;
-  }
 
-  function CheckBoxSameDirection(Coordinates, FirstPart) {
-    let CoordTopLeftAdjusted = [Coordinates[0] - 2, Coordinates[1] - 2];
-    let CoordBottomRightAdjusted = [Coordinates[0] + 2, Coordinates[1] + 2];
-    let CoordTopRightAdjusted = [Coordinates[0] - 2, Coordinates[1] + 2];
-    let CoordBottomLeftAdjusted = [Coordinates[0] + 2, Coordinates[1] - 2];
+      function TopRightToBottomLeft(Firstvalue, Secondvalue) {
 
-    switch ((Coordinates, FirstPart)) {
-      case CoordTopLeftContent:
-        SameDirection(CoordTopLeftAdjusted);
-        break;
 
-      case CoordTopRightContent:
-        SameDirection(CoordTopRightAdjusted);
-        break;
+        let TopRightExtendCoordinates
+        let BottomLeftExtendCoordinates
 
-      case CoordBottomLeftContent:
-        SameDirection(CoordBottomLeftAdjusted);
-        break;
+        if (Firstvalue[0] > Secondvalue[0]) {
+           TopRightExtendCoordinates = Firstvalue.map((value, index) => {
+            if (index === 0) {
+              return value - 1; // add one to the first element
+            } else if (index === 1) {
+              return value + 1; // subtract one from the second element
+            } else {
+              return value; // leave other elements unchanged
+            }
+          });
+        } else if (Firstvalue[0] < Secondvalue[0]) {
+           BottomLeftExtendCoordinates = Secondvalue.map((value, index) => {
+            if (index === 0) {
+              return value + 1; // add one to the first element
+            } else if (index === 1) {
+              return value - 1; // subtract one from the second element
+            } else {
+              return value; // leave other elements unchanged
+            }
+          });
+        } else {
+          console.log("There is an issue with extending the values");
+        }
+        let ExtendedValue
 
-      case CoordBottomRightContent:
-        SameDirection(CoordBottomRightAdjusted);
-        break;
+        if(typeof TopRightExtendCoordinates !== 'undefined' && TopRightExtendCoordinates) {
+          console.log("Inside TopRightExtendCoordinates condition");
+            ExtendedValue = board[TopRightExtendCoordinates[0]][TopRightExtendCoordinates[1]].textContent;
+           console.log(ExtendedValue)
+         
+         }
+         else
+         if(typeof BottomLeftExtendCoordinates !== 'undefined' &&  BottomLeftExtendCoordinates) {
+         console.log("Inside Bottomleft condition");
+           ExtendedValue = board[BottomLeftExtendCoordinates[0]][BottomLeftExtendCoordinates[1]].textContent;
+          console.log(ExtendedValue)
 
-      default:
-        console.log("Error with CheckBoxSameDirection");
-    }
-  }
+        }
 
-  function SameDirection(TheThirdBox) {
-    let ThirdBoxContent = board[TheThirdBox[0]][TheThirdBox[1]].textContent;
+        else {
+         console.log("It isnt working!")
+        }
+        console.log(TopRightExtendCoordinates)
+        console.log(BottomLeftExtendCoordinates)
 
-    if (ThirdBoxContent === evt.textContent) {
-      console.log(CoordTopLeftContent);
-      console.log(`${evt.textContent} wins!`);
-      return;
-    } else {
-      console.log("Simulation failed");
-      return;
+        if (((ExtendedValue) === (CurrentEventValue && CornerValue))) {
+          console.log(CurrentEventValue, CornerValue, ExtendedValue)
+
+         console.log(`${evt.textContent} wins!`)
+        }
+        else {
+         console.log(CurrentEventValue, CornerValue, ExtendedValue)
+        }
+
+      }
     }
   }
 }

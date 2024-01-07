@@ -885,3 +885,78 @@ if not...
     topleft extended
 
     if evt, topleft and topleft extended are the same
+    made error in array
+
+I have all of the pieces. I can feel it.
+
+I need
+
+The current button's location noted
+the current button's value noted
+    these done instantly on event
+
+each of that buttons corner locations noted
+    PossibleCorners.entries()
+each corner location value noted
+    contentvalue
+
+
+x top right corner strange results
+    000 x01 011 x20
+
+
+need to find way to check which way to run the algorithm
+
+if both coordinates of one of the values > the other, topleft to bottom right
+    else topright to bottomleft
+
+coordinates does the evt, need the coordinates for the corner
+then make 2 functions
+
+
+1/5
+
+for the coordinates, there are coordinates, and there is cornervalue
+
+
+to get the if statement right
+
+toplefttobottom right if 
+    one of the values has both numbers being higher
+
+    defining "firstvalue" vs "second value". is it be poition or by what is clicked in what order?
+        so far its the later. is that best?
+
+
+1/6
+
+started using .map(). seems important in the future
+
+
+I think I put too much code in  TopLeftToBottomRight() and not enough in TopRightToBottomLeft()
+
+be careful of scopes
+
+Firstvalue is the event
+secondvalue is the corners
+
+Do I need to actually do an if staement on which is first? could I just declare and check corners for both at once?
+
+
+toplefttobottomright
+
+    if 1st[0] < 2nd[0]
+    let extendedtopleft = 1st[0-1] 1st[0-1]
+
+    else
+    let extendedtopleft = 2nd[0-1] 2nd[0-1]
+
+    if 1st[0] > 2nd[0]
+    let extendedbottomright = 1st[0+1] 1st[0+1]
+
+    else
+    let extendedbottomright = 2nd[0+1] 2nd[0+1]
+    
+!!!!!! BIG QUESTION
+        should I declare the variables in a function in the beginning or near where they are used?
+
