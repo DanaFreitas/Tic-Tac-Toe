@@ -1050,3 +1050,53 @@ middle last woroks tlbr but not other way
 success, needed to change the map() target.
 
 just need to work on the middle last for trbl
+    tlbr
+            console.log("Inside Bottomright condition");
+           ExtendedValue = board[BottomRightExtendCoordinates[0]][BottomRightExtendCoordinates[1]].textContent;
+           console.log(ExtendedValue);
+    this trbl
+            Uncaught TypeError: can't access property "-1", board[BottomLeftExtendCoordinates[0]] is undefined
+
+top rightextend and bottomleft extwns dont exist
+
+the other algorith runs the wincon twice! need to contrast differences
+
+      function TopLeftToBottomRight(Firstvalue, Secondvalue) {
+        if (Firstvalue[0] < Secondvalue[0]) {
+          TopLeftExtendCoordinates = Firstvalue.map((x) => x - 1);
+          BottomRightExtendCoordinates = Secondvalue.map((x) => x + 1);
+        } else if (Firstvalue[0] > Secondvalue[0]) {
+          TopLeftExtendCoordinates = Secondvalue.map((x) => x - 1);
+          BottomRightExtendCoordinates = Firstvalue.map((x) => x + 1);
+        } else {
+          console.log("There is an issue with extendcoordinates");
+        }
+
+
+
+        if (Firstvalue[0] > Secondvalue[0]) {
+          TopRightExtendCoordinates = Secondvalue.map((value, index) => {
+            if (index === 0) {
+              return value + 1; // add one to the first element
+            } else if (index === 1) {
+              return value - 1; // subtract one from the second element
+            } else {
+              return value; // leave other elements unchanged
+            }
+          });
+        } else if (Firstvalue[0] < Secondvalue[0]) {
+          BottomLeftExtendCoordinates = Secondvalue.map((value, index) => {
+            if (index === 0) {
+              return value + 1; // add one to the first element
+            } else if (index === 1) {
+              return value - 1; // subtract one from the second element
+            } else {
+              return value; // leave other elements unchanged
+            }
+          });
+
+I think I need to declare both things in both half of the if else statement
+
+Success. That way I can have both sides be evaulated!
+
+Now I need an end state.

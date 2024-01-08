@@ -234,53 +234,57 @@ function winCondition(evt) {
       }
 
       function TestForVictory(Firstvalue, Secondvalue) {
-
-        if ((Firstvalue[0] > Secondvalue[0] && Firstvalue[1] > Secondvalue[1])
-        ||  (Firstvalue[0] < Secondvalue[0] && Firstvalue[1] < Secondvalue[1])) 
-        
-        {
+        if (
+          (Firstvalue[0] > Secondvalue[0] && Firstvalue[1] > Secondvalue[1]) ||
+          (Firstvalue[0] < Secondvalue[0] && Firstvalue[1] < Secondvalue[1])
+        ) {
           TopLeftToBottomRight(Firstvalue, Secondvalue);
         } else if (
           Firstvalue[0] > Secondvalue[0] ||
           Firstvalue[1] > Secondvalue[1]
         ) {
           TopRightToBottomLeft(Firstvalue, Secondvalue);
-        }
-        else{
-          console.log("Test for victory failed.")
+        } else {
+          console.log("Test for victory failed.");
         }
       }
 
       function TopLeftToBottomRight(Firstvalue, Secondvalue) {
- 
         if (Firstvalue[0] < Secondvalue[0]) {
           TopLeftExtendCoordinates = Firstvalue.map((x) => x - 1);
           BottomRightExtendCoordinates = Secondvalue.map((x) => x + 1);
-        }
-          else if (Firstvalue[0] > Secondvalue[0]) {
-           TopLeftExtendCoordinates = Secondvalue.map((x) => x - 1);
-           BottomRightExtendCoordinates = Firstvalue.map((x) => x + 1);
-         }
-         else {
+        } else if (Firstvalue[0] > Secondvalue[0]) {
+          TopLeftExtendCoordinates = Secondvalue.map((x) => x - 1);
+          BottomRightExtendCoordinates = Firstvalue.map((x) => x + 1);
+        } else {
           console.log("There is an issue with extendcoordinates");
         }
 
-        console.log(TopLeftExtendCoordinates)
-        console.log(BottomRightExtendCoordinates)
+        console.log(TopLeftExtendCoordinates);
+        console.log(BottomRightExtendCoordinates);
 
         let ExtendedValue;
-        if (typeof TopLeftExtendCoordinates !== "undefined" && TopLeftExtendCoordinates[0] >= 0 
-        && TopLeftExtendCoordinates) {
+        if (
+          typeof TopLeftExtendCoordinates !== "undefined" &&
+          TopLeftExtendCoordinates[0] >= 0 &&
+          TopLeftExtendCoordinates
+        ) {
           console.log("Inside TopLeftExtend condition");
-          ExtendedValue = board[TopLeftExtendCoordinates[0]][TopLeftExtendCoordinates[1]].textContent;
+          ExtendedValue =
+            board[TopLeftExtendCoordinates[0]][TopLeftExtendCoordinates[1]]
+              .textContent;
           console.log(ExtendedValue);
-         } else if (
-           typeof BottomRightExtendCoordinates !== "undefined" && BottomRightExtendCoordinates[0] >= 0 
-           && BottomRightExtendCoordinates
-         ) {
-           console.log("Inside Bottomright condition");
-           ExtendedValue = board[BottomRightExtendCoordinates[0]][BottomRightExtendCoordinates[1]].textContent;
-           console.log(ExtendedValue);
+        } else if (
+          typeof BottomRightExtendCoordinates !== "undefined" &&
+          BottomRightExtendCoordinates[0] >= 0 &&
+          BottomRightExtendCoordinates
+        ) {
+          console.log("Inside Bottomright condition");
+          ExtendedValue =
+            board[BottomRightExtendCoordinates[0]][
+              BottomRightExtendCoordinates[1]
+            ].textContent;
+          console.log(ExtendedValue);
         } else {
           console.log("Making extended value isnt working!");
         }
@@ -293,44 +297,67 @@ function winCondition(evt) {
       }
 
       function TopRightToBottomLeft(Firstvalue, Secondvalue) {
-      let TopRightExtendCoordinates;
-       let BottomLeftExtendCoordinates;
+        let TopRightExtendCoordinates;
+        let BottomLeftExtendCoordinates;
 
         if (Firstvalue[0] > Secondvalue[0]) {
           TopRightExtendCoordinates = Secondvalue.map((value, index) => {
             if (index === 0) {
-              return value + 1; // add one to the first element
+              return value + 1; 
             } else if (index === 1) {
-              return value - 1; // subtract one from the second element
+              return value - 1; 
             } else {
-              return value; // leave other elements unchanged
-            } 
+              return value; 
+            }
+          })
+
+          BottomLeftExtendCoordinates = Firstvalue.map((value, index) => {
+            if (index === 0) {
+              return value + 1; 
+            } else if (index === 1) {
+              return value - 1; 
+            } else {
+              return value;             }
           });
         } else if (Firstvalue[0] < Secondvalue[0]) {
           BottomLeftExtendCoordinates = Secondvalue.map((value, index) => {
             if (index === 0) {
-              return value + 1; // add one to the first element
+              return value + 1; 
             } else if (index === 1) {
-              return value - 1; // subtract one from the second element
+              return value - 1; 
             } else {
-              return value; // leave other elements unchanged
+              return value;             }
+          })
+
+          TopRightExtendCoordinates = Firstvalue.map((value, index) => {
+            if (index === 0) {
+              return value + 1; 
+            } else if (index === 1) {
+              return value - 1; 
+            } else {
+              return value; 
             }
           });
+
         } else {
           console.log("There is an issue with extending the values");
         }
         let ExtendedValue;
-        console.log(TopRightExtendCoordinates)
+        console.log(TopRightExtendCoordinates);
         if (
-          typeof TopRightExtendCoordinates !== "undefined" && TopRightExtendCoordinates[0] >= 0 && TopRightExtendCoordinates[1] >= 0 &&  ////////
+          typeof TopRightExtendCoordinates !== "undefined" &&
+          TopRightExtendCoordinates[0] >= 0 &&
+          TopRightExtendCoordinates[1] >= 0 && ////////
           TopRightExtendCoordinates
         ) {
           console.log("Inside TopRightExtendCoordinates condition");
-          ExtendedValue = board[TopRightExtendCoordinates[0]][TopRightExtendCoordinates[1]].textContent;
+          ExtendedValue =
+            board[TopRightExtendCoordinates[0]][TopRightExtendCoordinates[1]]
+              .textContent;
           console.log(ExtendedValue);
         } else if (
-          typeof BottomLeftExtendCoordinates !== "undefined" && BottomLeftExtendCoordinates[0] >= 0 
-          &&
+          typeof BottomLeftExtendCoordinates !== "undefined" &&
+          BottomLeftExtendCoordinates[0] >= 0 &&
           BottomLeftExtendCoordinates
         ) {
           console.log("Inside Bottomleft condition");
@@ -342,11 +369,13 @@ function winCondition(evt) {
         } else {
           console.log("Making an extended value isnt working!");
         }
-       // console.log(TopRightExtendCoordinates);
+        // console.log(TopRightExtendCoordinates);
         //console.log(BottomLeftExtendCoordinates);
 
         if (ExtendedValue === (CurrentEventValue && CornerValue)) {
-          console.log(`The coordinates are ${EventCoordinates}, ${CornerCoordinates},  ${BottomLeftExtendCoordinates},  ${TopRightExtendCoordinates}`)
+          console.log(
+            `The coordinates are ${EventCoordinates}, ${CornerCoordinates},  ${BottomLeftExtendCoordinates},  ${TopRightExtendCoordinates}`
+          );
           console.log(CurrentEventValue, CornerValue, ExtendedValue);
 
           console.log(`${evt.textContent} wins!`);
