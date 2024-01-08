@@ -229,20 +229,16 @@ function winCondition(evt) {
 
       if (CornerValue === CurrentEventValue) {
         TestForVictory(EventCoordinates, CornerCoordinates);
-      }
-
-      else{
+      } else {
         continue;
       }
 
       function TestForVictory(Firstvalue, Secondvalue) {
-        //console.log(`${Firstvalue[0]} is the first coordinate of the first panel`)
-        //console.log(`${Secondvalue[0]} is the first coordinate of the seond panel`)
 
-        //console.log(`${Firstvalue[1]} is the second coordinate of the first panel`)
-        //console.log(`${Secondvalue[1]} is the second coordinate of the seond panel`)
-
-        if (Firstvalue[0] > Secondvalue[0] && Firstvalue[1] > Secondvalue[1]) {
+        if ((Firstvalue[0] > Secondvalue[0] && Firstvalue[1] > Secondvalue[1])
+        ||  (Firstvalue[0] < Secondvalue[0] && Firstvalue[1] < Secondvalue[1])) 
+        
+        {
           TopLeftToBottomRight(Firstvalue, Secondvalue);
         } else if (
           Firstvalue[0] > Secondvalue[0] ||
@@ -250,71 +246,68 @@ function winCondition(evt) {
         ) {
           TopRightToBottomLeft(Firstvalue, Secondvalue);
         }
+        else{
+          console.log("Test for victory failed.")
+        }
       }
 
       function TopLeftToBottomRight(Firstvalue, Secondvalue) {
-        console.log(`${Firstvalue} is the first value`);
-        console.log(`${Secondvalue} is the second value`);
-
-
-
+ 
         if (Firstvalue[0] < Secondvalue[0]) {
-         TopLeftExtend = Firstvalue.map((x) => x - 1);
-          console.log(TopLeftExtend);
-        } else if (Firstvalue[0] > Secondvalue[0]) {
-           TopLeftExtend = Secondvalue.map((x) => x - 1);
-        } else {
-          console.log("There is an issue with extending the values");
+          TopLeftExtendCoordinates = Firstvalue.map((x) => x - 1);
+          BottomRightExtendCoordinates = Secondvalue.map((x) => x + 1);
+        }
+          else if (Firstvalue[0] > Secondvalue[0]) {
+           TopLeftExtendCoordinates = Secondvalue.map((x) => x - 1);
+           BottomRightExtendCoordinates = Firstvalue.map((x) => x + 1);
+         }
+         else {
+          console.log("There is an issue with extendcoordinates");
         }
 
-        let ExtendedValue 
-         if(typeof TopLeftExtend !== 'undefined' && TopLeftExtend) {
-           console.log("Inside TopLeftExtend condition");
-             ExtendedValue = board[TopLeftExtend[0]][TopLeftExtend[1]].textContent;
-            console.log(ExtendedValue)
-          
-          }
-          else
-          if(typeof BottomRightExtend !== 'undefined' &&  BottomRightExtend) {
-          console.log("Inside Bottomright condition");
-            ExtendedValue = board[BottomRightExtend[0]][BottomRightExtend[1]].textContent;
-           console.log(ExtendedValue)
+        console.log(TopLeftExtendCoordinates)
+        console.log(BottomRightExtendCoordinates)
 
-         }
+        let ExtendedValue;
+        if (typeof TopLeftExtendCoordinates !== "undefined" && TopLeftExtendCoordinates[0] >= 0 
+        && TopLeftExtendCoordinates) {
+          console.log("Inside TopLeftExtend condition");
+          ExtendedValue = board[TopLeftExtendCoordinates[0]][TopLeftExtendCoordinates[1]].textContent;
+          console.log(ExtendedValue);
+         } else if (
+           typeof BottomRightExtendCoordinates !== "undefined" && BottomRightExtendCoordinates[0] >= 0 
+           && BottomRightExtendCoordinates
+         ) {
+           console.log("Inside Bottomright condition");
+           ExtendedValue = board[BottomRightExtendCoordinates[0]][BottomRightExtendCoordinates[1]].textContent;
+           console.log(ExtendedValue);
+        } else {
+          console.log("Making extended value isnt working!");
+        }
 
-         else {
-          console.log("It isnt working!")
-         }
-
-
-         if (((ExtendedValue) === (CurrentEventValue && CornerValue))) {
-          console.log(`${evt.textContent} wins!`)
-         }
-         else {
-          console.log(CurrentEventValue, CornerValue,BottomRightExtendedValue)
-         }
-
-
+        if (ExtendedValue === (CurrentEventValue && CornerValue)) {
+          console.log(`${evt.textContent} wins!`);
+        } else {
+          console.log(CurrentEventValue, CornerValue, ExtendedValue);
+        }
       }
 
       function TopRightToBottomLeft(Firstvalue, Secondvalue) {
-
-
-        let TopRightExtendCoordinates
-        let BottomLeftExtendCoordinates
+      let TopRightExtendCoordinates;
+       let BottomLeftExtendCoordinates;
 
         if (Firstvalue[0] > Secondvalue[0]) {
-           TopRightExtendCoordinates = Firstvalue.map((value, index) => {
+          TopRightExtendCoordinates = Secondvalue.map((value, index) => {
             if (index === 0) {
-              return value - 1; // add one to the first element
+              return value + 1; // add one to the first element
             } else if (index === 1) {
-              return value + 1; // subtract one from the second element
+              return value - 1; // subtract one from the second element
             } else {
               return value; // leave other elements unchanged
-            }
+            } 
           });
         } else if (Firstvalue[0] < Secondvalue[0]) {
-           BottomLeftExtendCoordinates = Secondvalue.map((value, index) => {
+          BottomLeftExtendCoordinates = Secondvalue.map((value, index) => {
             if (index === 0) {
               return value + 1; // add one to the first element
             } else if (index === 1) {
@@ -326,37 +319,40 @@ function winCondition(evt) {
         } else {
           console.log("There is an issue with extending the values");
         }
-        let ExtendedValue
-
-        if(typeof TopRightExtendCoordinates !== 'undefined' && TopRightExtendCoordinates) {
-          console.log("Inside TopRightExtendCoordinates condition");
-            ExtendedValue = board[TopRightExtendCoordinates[0]][TopRightExtendCoordinates[1]].textContent;
-           console.log(ExtendedValue)
-         
-         }
-         else
-         if(typeof BottomLeftExtendCoordinates !== 'undefined' &&  BottomLeftExtendCoordinates) {
-         console.log("Inside Bottomleft condition");
-           ExtendedValue = board[BottomLeftExtendCoordinates[0]][BottomLeftExtendCoordinates[1]].textContent;
-          console.log(ExtendedValue)
-
-        }
-
-        else {
-         console.log("It isnt working!")
-        }
+        let ExtendedValue;
         console.log(TopRightExtendCoordinates)
-        console.log(BottomLeftExtendCoordinates)
-
-        if (((ExtendedValue) === (CurrentEventValue && CornerValue))) {
-          console.log(CurrentEventValue, CornerValue, ExtendedValue)
-
-         console.log(`${evt.textContent} wins!`)
+        if (
+          typeof TopRightExtendCoordinates !== "undefined" && TopRightExtendCoordinates[0] >= 0 && TopRightExtendCoordinates[1] >= 0 &&  ////////
+          TopRightExtendCoordinates
+        ) {
+          console.log("Inside TopRightExtendCoordinates condition");
+          ExtendedValue = board[TopRightExtendCoordinates[0]][TopRightExtendCoordinates[1]].textContent;
+          console.log(ExtendedValue);
+        } else if (
+          typeof BottomLeftExtendCoordinates !== "undefined" && BottomLeftExtendCoordinates[0] >= 0 
+          &&
+          BottomLeftExtendCoordinates
+        ) {
+          console.log("Inside Bottomleft condition");
+          ExtendedValue =
+            board[BottomLeftExtendCoordinates[0]][
+              BottomLeftExtendCoordinates[1]
+            ].textContent;
+          console.log(ExtendedValue);
+        } else {
+          console.log("Making an extended value isnt working!");
         }
-        else {
-         console.log(CurrentEventValue, CornerValue, ExtendedValue)
-        }
+       // console.log(TopRightExtendCoordinates);
+        //console.log(BottomLeftExtendCoordinates);
 
+        if (ExtendedValue === (CurrentEventValue && CornerValue)) {
+          console.log(`The coordinates are ${EventCoordinates}, ${CornerCoordinates},  ${BottomLeftExtendCoordinates},  ${TopRightExtendCoordinates}`)
+          console.log(CurrentEventValue, CornerValue, ExtendedValue);
+
+          console.log(`${evt.textContent} wins!`);
+        } else {
+          console.log(CurrentEventValue, CornerValue, ExtendedValue);
+        }
       }
     }
   }

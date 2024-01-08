@@ -960,3 +960,93 @@ toplefttobottomright
 !!!!!! BIG QUESTION
         should I declare the variables in a function in the beginning or near where they are used?
 
+Need to declare variables better
+    diferentiate between coordinates and textcontent more clearly
+
+partial succseses
+issues on both sides
+    topltobottomr only allows in that direction, no other
+    toprtobottoml is declaring it after 2 in a row
+
+    trying bottom right doesnt lead to an "Uncaught TypeError: can't access property "-1", board[TopLeftExtendCoordinates[0]] is undefined" type error while 
+    the other way around does
+
+
+issues: 269, topleft coordinates. for some reason, exclusively the topleft corner is causing errors
+        for the topright, there are victory declarations only 2 symbols long insteadf of 3
+            exception, the bottom left has the same "-1 isnt defined" issue when the middle symbol is placed last
+
+1/7
+
+if (typeof TopRightExtendCoordinates !== "undefined" &&
+TopRightExtendCoordinates)
+this deals with stuff being falsy or if it exist. negative numbers are truthy
+    now the issue is extended not working
+        the possible issue is that it may interfere with the extended declaring
+        if a hypothetical box is in the negatives, then it doesnt get delclared.
+
+for whatever reason 
+    CornerCoordinates and TopRightExtendCoordinates are identical. a lead!
+    othe way is fine though
+
+    bottomleft to top right is the only corner that isnt having a problem making it work on the third part
+        adding BottomLeftExtendCoordinates >= 0 seems to have messed it up. suspicion. this restriction stopped the if statement from running
+
+
+in regards to the usage of vairable >0 0 , it will stop useful code, if as a requirement, one of the third boxes has one of these values as a requirement. is it possible that these errors should be ignored instead of being dealt with?
+
+when they are removied, toplefttobottom right benefits and bottomlefttotopright benefits
+
+possibility: it has something to do with the negative x coordinates.
+
+Uncaught TypeError: can't access property "-1", board[TopRightExtendCoordinates[0]] is undefinedUncaught 
+TypeError: can't access property "-1", board[TopLeftExtendCoordinates[0]] is undefined
+
+I added the contion to both of the right starting conditions. only the roptight has succceeded
+could it be because the bottom right will need to deal with twicre as many negatives?
+
+might need more negatives. but it would 
+    topleft doesnt need. would need to understand more
+
+
+1/8
+
+Uncaught TypeError: can't access property 3, board[BottomRightExtendCoordinates[0]] is undefined
+
+Making an extended value isnt working! tictactoe.js:345:19
+O O undefined
+trbl: no error shown
+
+
+tlbr added
+     && BottomRightExtendCoordinates >= 0 
+    not the same as the other
+
+what do the other ways do about this?
+
+Discovery
+
+&& TopLeftExtendCoordinates >= 0 
+    tlbr Uncaught TypeError: can't access property 3, board[BottomRightExtendCoordinates[0]] is undefined
+    and allowd brtl to run poperly
+ && BottomRightExtendCoordinates >= 0 
+    Uncaught TypeError: can't access property "-1", board[TopLeftExtendCoordinates[0]] is undefined
+    amd a;;pwed tlbr to run properly
+both existing cause
+    undefined
+neither cause
+    tlbr fine
+    brtl Uncaught TypeError: can't access property "-1", board[TopLeftExtendCoordinates[0]] is undefined
+
+
+    its TopLeftExtendCoordinates[0] NOT TopLeftExtendCoordinates.
+    big lesson: dont mix up strings and arrays
+
+
+all work except trbl
+it might have something to do with the return values
+middle last woroks tlbr but not other way
+
+success, needed to change the map() target.
+
+just need to work on the middle last for trbl
