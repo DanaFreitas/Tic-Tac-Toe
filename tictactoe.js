@@ -9,6 +9,8 @@ let started = false;
 let itStarted = false;
 
 let turn;
+console.log(`The turn is ${turn}`)
+
 let board = [[], [], []];
 
 for (rownumber = 0; rownumber <= board.length; rownumber++) {
@@ -18,8 +20,6 @@ for (rownumber = 0; rownumber <= board.length; rownumber++) {
     for (row1 = 0; row1 <= 2; row1++) {
       part1 = board[rownumber].push(box[row1]);
 
-      // box[0].textContent =  board[rownumber][row1];
-      //  console.log(board[rownumber][row1])
     }
   } else if (rownumber === 1) {
     let part2 = rownumber;
@@ -27,17 +27,16 @@ for (rownumber = 0; rownumber <= board.length; rownumber++) {
     for (row2 = 3; row2 <= 5; row2++) {
       part2 = board[rownumber].push(box[row2]);
 
-      //box[1].textContent = board[rownumber][row2 - 3];
     }
   } else if (rownumber === 2) {
     let part3 = rownumber;
 
     for (row3 = 6; row3 <= 8; row3++) {
       part3 = board[rownumber].push(box[row3]);
-      // box[2].textContent = board[rownumber][row3 - 6];
     }
   }
 }
+
 
 for (let j = 0; j < box.length; j++) {
   box[j].addEventListener("click", function (evt) {
@@ -85,7 +84,9 @@ function begingame(turn) {
   setTimeout(() => {
     anouncementContainer.style.visibility = "hidden";
     turnAnnouncer.textContent = `It's ${turn}'s turn.`;
-  }, 5);
+  }, 50);
+  console.log(`The turn is ${turn}`)
+
   return (started = true);
 }
 
@@ -130,6 +131,7 @@ function winCondition(evt) {
 
     if (youWin) {
       console.log(`${evt.textContent} wins!`);
+      Reset()
     }
   }
 
@@ -147,20 +149,19 @@ function winCondition(evt) {
 
     if (JSON.stringify(valueCollection) === JSON.stringify(["O", "O", "O"])) {
       console.log(`${evt.textContent} wins!`);
+      Reset()
     }
 
     if (JSON.stringify(valueCollection) === JSON.stringify(["X", "X", "X"])) {
       console.log(`${evt.textContent} wins!`);
+      Reset()
     }
   }
 
-  //add evt to parameter?
 
   function TestDiagonalWinCon(theRow, theColumn) {
-    //EventCoordinates of the original evt box
     let EventCoordinates = [theRow, theColumn];
 
-    //EventCoordinates of the boxes to their corners
     let CoordTopLeft = [EventCoordinates[0] - 1, EventCoordinates[1] - 1];
     let CoordBottomRight = [EventCoordinates[0] + 1, EventCoordinates[1] + 1];
 
@@ -168,11 +169,6 @@ function winCondition(evt) {
 
     let CoordBottomLeft = [EventCoordinates[0] + 1, EventCoordinates[1] - 1];
 
-    // if (typeof board === "undefined" || typeof board === "undefined") {
-    //   return;
-    // }
-
-    //assigning variables for the other corners
 
     if (
       board[CoordBottomLeft[0]] &&
@@ -199,7 +195,6 @@ function winCondition(evt) {
         board[CoordTopRight[0]][CoordTopRight[1]].textContent;
     }
 
-    //grouping the corners efficiently in an array
 
     let PossibleCorners = [
       CoordTopLeft,
@@ -214,15 +209,7 @@ function winCondition(evt) {
       CoordTopRightContent,
       CoordBottomRightContent,
     ];
-    //run through all of the corner boxes relative to  of the evt
-
-    //the number of "triggers" based on the
-    //index is number of the array 0-3
-    //CornerEventCoordinates is the value of possiblecorners, key-object
-    //possiblecorners is the name of the array, with each value being a COORDINATE
-    //entries creates entries giving each of the values in an array a key
     for (let [index, CornerCoordinates] of PossibleCorners.entries()) {
-      //if (typeof PossibleCorners !== 'undefined') {      }
 
       let CornerValue = PossibleCornerContent[index];
       let CurrentEventValue = evt.textContent;
@@ -260,8 +247,6 @@ function winCondition(evt) {
           console.log("There is an issue with extendcoordinates");
         }
 
-        console.log(TopLeftExtendCoordinates);
-        console.log(BottomRightExtendCoordinates);
 
         let ExtendedValue;
         if (
@@ -269,22 +254,18 @@ function winCondition(evt) {
           TopLeftExtendCoordinates[0] >= 0 &&
           TopLeftExtendCoordinates
         ) {
-          console.log("Inside TopLeftExtend condition");
           ExtendedValue =
             board[TopLeftExtendCoordinates[0]][TopLeftExtendCoordinates[1]]
               .textContent;
-          console.log(ExtendedValue);
         } else if (
           typeof BottomRightExtendCoordinates !== "undefined" &&
           BottomRightExtendCoordinates[0] >= 0 &&
           BottomRightExtendCoordinates
         ) {
-          console.log("Inside Bottomright condition");
           ExtendedValue =
             board[BottomRightExtendCoordinates[0]][
               BottomRightExtendCoordinates[1]
             ].textContent;
-          console.log(ExtendedValue);
         } else {
           console.log("Making extended value isnt working!");
         }
@@ -292,7 +273,6 @@ function winCondition(evt) {
         if (ExtendedValue === (CurrentEventValue && CornerValue)) {
           console.log(`${evt.textContent} wins!`);
         } else {
-          console.log(CurrentEventValue, CornerValue, ExtendedValue);
         }
       }
 
@@ -303,9 +283,9 @@ function winCondition(evt) {
         if (Firstvalue[0] > Secondvalue[0]) {
           TopRightExtendCoordinates = Secondvalue.map((value, index) => {
             if (index === 0) {
-              return value + 1; 
-            } else if (index === 1) {
               return value - 1; 
+            } else if (index === 1) {
+              return value + 1; 
             } else {
               return value; 
             }
@@ -331,9 +311,9 @@ function winCondition(evt) {
 
           TopRightExtendCoordinates = Firstvalue.map((value, index) => {
             if (index === 0) {
-              return value + 1; 
-            } else if (index === 1) {
               return value - 1; 
+            } else if (index === 1) {
+              return value + 1; 
             } else {
               return value; 
             }
@@ -343,46 +323,60 @@ function winCondition(evt) {
           console.log("There is an issue with extending the values");
         }
         let ExtendedValue;
-        console.log(TopRightExtendCoordinates);
         if (
           typeof TopRightExtendCoordinates !== "undefined" &&
           TopRightExtendCoordinates[0] >= 0 &&
-          TopRightExtendCoordinates[1] >= 0 && ////////
+          TopRightExtendCoordinates[1] >= 0 && 
           TopRightExtendCoordinates
         ) {
-          console.log("Inside TopRightExtendCoordinates condition");
           ExtendedValue =
             board[TopRightExtendCoordinates[0]][TopRightExtendCoordinates[1]]
               .textContent;
-          console.log(ExtendedValue);
         } else if (
           typeof BottomLeftExtendCoordinates !== "undefined" &&
           BottomLeftExtendCoordinates[0] >= 0 &&
           BottomLeftExtendCoordinates
         ) {
-          console.log("Inside Bottomleft condition");
           ExtendedValue =
             board[BottomLeftExtendCoordinates[0]][
               BottomLeftExtendCoordinates[1]
             ].textContent;
-          console.log(ExtendedValue);
         } else {
           console.log("Making an extended value isnt working!");
-        }
-        // console.log(TopRightExtendCoordinates);
-        //console.log(BottomLeftExtendCoordinates);
+        } 
 
         if (ExtendedValue === (CurrentEventValue && CornerValue)) {
-          console.log(
-            `The coordinates are ${EventCoordinates}, ${CornerCoordinates},  ${BottomLeftExtendCoordinates},  ${TopRightExtendCoordinates}`
-          );
-          console.log(CurrentEventValue, CornerValue, ExtendedValue);
-
+          console.log(EventCoordinates,TopRightExtendCoordinates, BottomLeftExtendCoordinates, CornerCoordinates)
+          console.log(ExtendedValue, CurrentEventValue, CornerValue)
           console.log(`${evt.textContent} wins!`);
+      //   Reset()
         } else {
-          console.log(CurrentEventValue, CornerValue, ExtendedValue);
+
         }
       }
     }
   }
+}
+
+
+const ResetButton = document.getElementById("resetbutton")
+ResetButton.addEventListener("click", Reset)
+
+
+function Reset() {
+ board = [[],[],[]]
+  started = false;
+  itStarted = false;
+  turnAnnouncer.textContent = "";
+turn = "";
+
+for (i=0; i<=box.length; i++)
+{
+  box[i].textContent = "";
+}
+
+ 
+ console.log(`The turn is ${turn}`)
+ console.log(` Started is ${started}`)
+
 }

@@ -1100,3 +1100,27 @@ I think I need to declare both things in both half of the if else statement
 Success. That way I can have both sides be evaulated!
 
 Now I need an end state.
+
+
+Figured out the game!.
+
+Now to add a reset button
+
+1/8
+
+I need to find a wy to make the reseting "stick"
+
+The turn anncouncement isnt changing
+the buttons do nothing
+the board isnt reseting
+
+the only thing is that it saus the turns are changing, but that has 0 practical effect
+
+I managed to be able to reset the game, but I had not thouroughly enough tested the win cases. x[4] o[3] x[6] gave me a winconc for that
+    only seems to be a problem for 
+        trbl. check the win coordinates
+
+event and top right are the same when trbl
+tr amd corner same bltr
+
+check the numners and targeting for the trbl function
