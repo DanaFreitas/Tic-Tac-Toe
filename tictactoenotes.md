@@ -1124,3 +1124,86 @@ event and top right are the same when trbl
 tr amd corner same bltr
 
 check the numners and targeting for the trbl function
+    needed to swap around some pluses and minuses
+
+design notes other online games
+
+kenken
+
+hovers over the button to be solected
+
+usa tiday
+    game takes up over 80 of screen
+    there is deadspace at top and bottom
+        noises when clicking
+    the squares and background contrastinf colors
+            technical buttons tertiary color
+    an alert for a grats scree with states
+
+    kenkenpuzzle
+        no contrast between boxes and background but there ARE old, undivided lines
+
+sudokuonline.org
+    checkboard style color contrast
+    title of site brightest color
+
+
+...nvm about the testing, didnt test enough
+
+
+https://mixkit.co/free-sound-effects/click/
+
+have the turn sentence change based on the turn and have it not be static
+make sure the reset button doesnt get pushed down
+
+problems left. still that programming...
+the size keeps changing
+
+removed the size change. tested program again. problem gone...
+
+I guess now I will go on to responsive design...this will be fairly easy
+
+
+1/9/24 
+OL
+ipad
+the turn announcement is uneven
+more padding above the title
+
+
+1/10
+
+for popups make rest of the page toned color
+
+1/13
+
+install sass
+make if statement for the blur
+    be body, exclude the popup
+
+I need to find a way to have the css for the blue exception to be run
+    likely data attributes
+
+
+tried removing stuff. the css code DOES work for the blur, its just the js overriding I need to worry about
+
+announcementContainer need to fix that code
+
+ announcementContainer.style.filter = 'blur(0px) !important';
+doesnt override
+  document.body.style.filter = 'blur(6px)'
+because its a child
+
+if parent is blurred, so must children
+
+it may be better to just try to have darker tones for the background
+
+maybe have the popup be a sibling somehow. they could be a problem for filter in general
+overflow:hide bad practice
+
+1/14 
+Need to keep workin on the if statements for the button backgrounds during the start event
+
+1/15
+
+!global is good for very wide reaching if statements

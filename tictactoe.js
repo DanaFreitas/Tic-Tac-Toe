@@ -1,15 +1,20 @@
+//document.body.classList.add('override-background')
+document.body.classList.add('DefaultBackground')
+
+
 const box = document.getElementsByClassName("box");
 const selectButton = document.getElementsByClassName("playerselect");
 const animate = document.getElementsByClassName("animate");
 const warning = document.getElementById("warning");
 const beginningAnnouncement = document.getElementById("beginningAnnouncement");
-const anouncementContainer = document.getElementById("announcementContainer");
+const announcementContainer = document.getElementById("announcementContainer");
 let turnAnnouncer = document.getElementById("turnAnnouncer");
 let started = false;
 let itStarted = false;
 
 let turn;
-console.log(`The turn is ${turn}`)
+
+
 
 let board = [[], [], []];
 
@@ -60,7 +65,7 @@ function selectplayer() {
     setTimeout(() => {
       selectButton[k].classList.remove("animate");
       warning.style.visibility = "hidden";
-    }, 100);
+  }, 1000);
   }
 }
 
@@ -79,13 +84,24 @@ for (let i = 0; i < selectButton.length; i++) {
   });
 }
 
+
 function begingame(turn) {
-  anouncementContainer.style.visibility = "visible";
+  document.body.classList.add('override-background')
+  document.body.classList.remove('Default-Background')
+  //const buttons = document.getElementsByTagName('button')
+  announcementContainer.style.visibility = "visible";
+ 
+
   setTimeout(() => {
-    anouncementContainer.style.visibility = "hidden";
     turnAnnouncer.textContent = `It's ${turn}'s turn.`;
-  }, 50);
-  console.log(`The turn is ${turn}`)
+    document.body.classList.remove('override-background')
+    document.body.classList.add('Default-Background')
+
+    announcementContainer.style.visibility = "hidden"; 
+  } , 500)
+ 
+
+
 
   return (started = true);
 }
@@ -96,14 +112,21 @@ function markSquare(evt) {
       return;
     }
   }
+  const audio = document.querySelector('audio');
+  audio.playbackRate = 4;
+  audio.play();
   if (turn === "X") {
     evt.textContent = "X";
     turn = selectButton[0].getAttribute("data-icon");
+    turnAnnouncer.textContent = `It's ${turn}'s turn.`;
+
     winCondition(evt);
     return;
   } else if (turn === "O") {
     evt.textContent = "O";
     turn = selectButton[1].getAttribute("data-icon");
+    turnAnnouncer.textContent = `It's ${turn}'s turn.`;
+
     winCondition(evt);
   } else {
     console.log("There is an issue with makring the squares.");
@@ -306,7 +329,7 @@ function winCondition(evt) {
             } else if (index === 1) {
               return value - 1; 
             } else {
-              return value;             }
+              return value;}
           })
 
           TopRightExtendCoordinates = Firstvalue.map((value, index) => {

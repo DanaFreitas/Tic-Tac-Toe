@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="tictactoe.css" type="text/css" />
+    <link rel="stylesheet" href="tictactoe.sass" type="text/css" />
+
     <link rel="stylesheet" href="tictactoeresponsive.css" type="text/css" />
 
 </head>
 
 <title>Tic-Tac-Toe</title>
 
-<h2 data-oosition="turn"></h2>
+<h2 data-position="turn"></h2>
 
 <body>
-    <h1>Threesquare</h1>
+    <h1>Tic-Tac-Toe</h1>
 
 
 
@@ -28,11 +30,12 @@
     <p id="turnAnnouncer"></p>
 
 
- <div id="announcementContainer">
+ <div id="announcementContainer"> 
     <p id="beginningAnnouncement">Let the game begin!</p>
 </div>
     <div id="grid-container">     
     <div data-box="grid" id="grid">
+        <audio src="ClickingSound.mp3"></audio>
     <button class="box" id="box1"></button>
     <button class="box" id="box2" type="button"></button>
      <button class="box" id="box3" type="button"></button> 
