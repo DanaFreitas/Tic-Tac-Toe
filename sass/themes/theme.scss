@@ -1,0 +1,36 @@
+@use '../abstracts/variables.scss';
+$Activestyle: null;
+
+.DefaultBackground {
+    //background-color: $Default-Background;
+    background-color: variables.$Default-Background;
+                                 
+  }
+
+      //$Default-Background:#91cc5b;
+
+
+
+  .override-background {
+    $Activestyle: true !global;
+  
+    
+    @if $Activestyle {
+      background-color: variables.$Darker-Background;
+      color: variables.$Darker-Background;
+      } @else {
+      background-color:// #cdfed6; 
+      orange;
+     }
+
+    button {
+      @if $Activestyle {
+        background-color: variables.$Darker-Background;
+      } @else {
+        background-color:// #cdfed6;
+        orange;
+      }
+    } 
+  
+
+  }

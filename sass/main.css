@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Stick&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(15px + 0.390625vw);
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+#announcementContainer {
+  height: 50%;
+  width: 90%;
+  left: 5%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+#turnAnnouncer {
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  display: hidden;
+}
+
+#beginningAnnouncement {
+  color: red;
+  z-index: 2;
+  text-align: center;
+  background-color: white;
+  font-size: 4rem;
+  font-family: "Stick", sans-serif;
+  border-radius: 50% 50% 50% 50%;
+}
+
+@media screen and (min-width: 768px) {
+  #beginningAnnouncement {
+    font-size: 6rem;
+  }
+}
+@media screen and (min-width: 1440px) {
+  #beginningAnnouncement {
+    font-size: 4rem;
+  }
+}
+#warning {
+  text-align: center;
+  visibility: hidden;
+}
+
+.DefaultBackground {
+  background-color: #91cc5b;
+}
+
+.override-background {
+  background-color: #141f09;
+  color: #141f09;
+}
+
+.override-background button {
+  background-color: #141f09;
+}
+
+.playerselect {
+  width: 34%;
+  margin: 5%;
+  border: none;
+  font-size: 3rem;
+  color: #402f1d;
+  font-family: "Stick", sans-serif;
+}
+
+@media (min-width: 768px) {
+  .playerselect {
+    width: 24%;
+    color: black;
+  }
+}
+@media (min-width: 1024px) {
+  .playerselect {
+    width: 20%;
+    color: black;
+  }
+}
+@media (min-width: 1440px) {
+  .playerselect {
+    width: 10%;
+    color: black;
+  }
+}
+.playerselect:hover {
+  color: red;
+}
+
+#resetbutton {
+  width: 80vw;
+  margin: 5% auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  font-size: 1.3rem;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  #resetbutton {
+    width: 60%;
+    color: black;
+  }
+}
+@media (min-width: 1024px) {
+  #resetbutton {
+    width: 50%;
+    color: black;
+  }
+}
+@media (min-width: 1440px) {
+  #resetbutton {
+    width: 30%;
+    color: black;
+  }
+}
+#resetbutton:hover {
+  color: red;
+}
+
+.animate {
+  background-color: #fd8686;
+  border-color: red;
+  border-width: 0.3rem;
+}
+
+#grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  color: brown;
+}
+
+#grid {
+  display: grid;
+  grid-template-rows: 33% 33% 33%;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 0rem;
+  width: 80%;
+  aspect-ratio: 1/1;
+  color: brown;
+}
+
+@media (min-width: 760px) {
+  #grid {
+    width: 60%;
+  }
+}
+@media (min-width: 1024px) {
+  #grid {
+    width: 50%;
+  }
+}
+@media (min-width: 1440px) {
+  #grid {
+    width: 30%;
+  }
+}
+.box {
+  border-color: #402f1d;
+  border-style: solid;
+  text-align: center;
+  border-width: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-family: "Stick", sans-serif;
+}
+
+#buttoncontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.DefaultBackground {
+  background-color: #91cc5b;
+}
+
+.override-background {
+  background-color: #141f09;
+  color: #141f09;
+}
+.override-background button {
+  background-color: #141f09;
+}
+
+/*# sourceMappingURL=main.css.map */

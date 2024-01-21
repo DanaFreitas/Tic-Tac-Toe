@@ -1,4 +1,3 @@
-//document.body.classList.add('override-background')
 document.body.classList.add('DefaultBackground')
 
 
@@ -88,7 +87,6 @@ for (let i = 0; i < selectButton.length; i++) {
 function begingame(turn) {
   document.body.classList.add('override-background')
   document.body.classList.remove('Default-Background')
-  //const buttons = document.getElementsByTagName('button')
   announcementContainer.style.visibility = "visible";
  
 
@@ -98,7 +96,7 @@ function begingame(turn) {
     document.body.classList.add('Default-Background')
 
     announcementContainer.style.visibility = "hidden"; 
-  } , 500)
+  } ,500)
  
 
 
@@ -392,7 +390,7 @@ function Reset() {
   itStarted = false;
   turnAnnouncer.textContent = "";
 turn = "";
-
+window.scrollTo(0, 0);
 for (i=0; i<=box.length; i++)
 {
   box[i].textContent = "";

@@ -1,0 +1,42 @@
+#announcementContainer {
+  height: 50%;
+  width: 90%;
+  left: 5%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+#turnAnnouncer {
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  display: hidden;
+}
+
+#beginningAnnouncement {
+  color: red;
+  z-index: 2;
+  text-align: center;
+  background-color: white;
+  font-size: 4rem;
+  font-family: "Stick", sans-serif;
+  border-radius: 50% 50% 50% 50%;
+}
+
+@media screen and (min-width: 768px) {
+  #beginningAnnouncement {
+    font-size: 6rem;
+  }
+}
+@media screen and (min-width: 1440px) {
+  #beginningAnnouncement {
+    font-size: 4rem;
+  }
+}
+#warning {
+  text-align: center;
+  visibility: hidden;
+}/*# sourceMappingURL=announcement.css.map */

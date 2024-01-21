@@ -1207,3 +1207,54 @@ Need to keep workin on the if statements for the button backgrounds during the s
 1/15
 
 !global is good for very wide reaching if statements
+    will ignore scope   
+
+Figure out how to use @use for the variables
+
+1/16 the use file can be done within the main sass file. my issue is file location management
+
+got to work 
+
+rename scss to sass folder
+
+1/16
+
+file nvigation: use ../
+
+As of Dart Sass 2.0.0, !global assignments won't be able to declare new variables.
+
+Recommendation: add `$Activestyle: null` at the stylesheet root.
+   ╷
+13 |    $Activestyle: true !global;
+   |   ^..........................^
+
+   window.scrollTo(0, 0);
+
+There are pathing issues with 
+    $Activestyle: false !default;
+it doesnt work when being imported from a different file but does in the target file
+
+fix prblem the scss isnt updating
+
+
+1/18
+
+sass --watch . worked 
+
+
+ipadmini 768
+ipadpro 1024
+hd laptop 1440
+
+have all of the buttons' edges line up with the tic tac toe board
+
+make the "let the games begin screen" responsive
+
+
+1/19
+
+make sure to start off with
+
+sass --watch sass/main.scss:sass/main.css
+
+for 768, should I make the buttons smaller or the board bigger?

@@ -1,0 +1,112 @@
+$Activestyle: false !default;
+@use '../abstracts/variables.scss';
+@use '../themes/theme.scss';
+
+.playerselect {
+    width: 34%;
+    margin: 5%;
+    border: none;
+    font-size: 3rem;
+  
+    @if ($Activestyle) {
+      color:black;
+    }
+  @else {color: #402f1d;}
+    
+    font-family: "Stick", sans-serif;
+  }
+  
+  
+
+
+  @media (min-width: 768px) {
+    .playerselect {
+      width:24%;
+   //   margin-top: 5%;
+   //   margin-bottom: 5%;
+
+        //  margin-left:5%;
+          //margin-right:5%;
+      color:black
+
+    }
+  }
+  
+
+  @media (min-width: 1024px) {
+    .playerselect {
+      width: 20%;
+  //        margin-left:25%;
+    //      margin-right:5%;
+      color:black
+
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .playerselect {
+      width: 10%;
+  //        margin-left:25%;
+    //      margin-right:5%;
+      color:black
+
+    }
+  }  
+
+
+.playerselect:hover {
+    color: red;
+  }
+  
+
+
+  
+#resetbutton {
+    width: 80vw;
+     margin: 5% auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    //margin-top: 0.5rem;
+    border: none;
+    font-size: 1.3rem;
+    padding: 1rem;
+    //margin:5%;
+  }
+  
+
+   @media (min-width: 768px) {
+    #resetbutton {
+      width:60%;
+  //        margin-left:25%;
+    //      margin-right:5%;
+      color:black
+
+    }
+  }
+
+
+  @media (min-width: 1024px) {
+    #resetbutton {
+      width:50%;
+  //        margin-left:25%;
+    //      margin-right:5%;
+      color:black
+
+    }
+  }
+
+  @media (min-width: 1440px) {
+    #resetbutton {
+      width:30%;
+  //        margin-left:25%;
+    //      margin-right:5%;
+      color:black
+
+    }
+  }
+
+  #resetbutton:hover {
+    color: red;
+  }
