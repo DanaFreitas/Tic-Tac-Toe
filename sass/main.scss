@@ -1,23 +1,17 @@
+@import "abstracts/variables.scss";
 
+@import "base/typography.scss";
 
+@import "components/announcement.scss";
 
-@import 'abstracts/variables.scss';
+@import "components/buttons.scss";
 
-@import 'base/typography.scss';
+@import "components/warning.scss";
 
-@import 'components/announcement.scss';
+@import "layout/grid.scss";
 
-@import 'components/buttons.scss';
+@import "layout/buttoncontainer.scss";
 
-@import 'components/warning.scss';
+@import "vendors/fonts.scss";
 
-@import 'layout/grid.scss';
-
-@import 'layout/buttoncontainer.scss';
-
-@import 'vendors/fonts.scss';
-
-@import 'themes/theme.scss';
-
-
-
+@import "themes/theme.scss";

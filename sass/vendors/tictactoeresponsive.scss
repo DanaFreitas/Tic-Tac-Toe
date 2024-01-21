@@ -1,16 +1,16 @@
-@media only screen and (min-width:768px) {
+@media only screen and (min-width: 768px) {
+  #turnAnnouncer {
+    font-size: 3rem;
+  }
 
+  #resetbutton {
+    padding: 3rem;
+    font-size: 3rem;
+    width: 60%;
+  }
 
-
-
-
-#turnAnnouncer {font-size: 3rem;}
-
-
-#resetbutton {padding:3rem; font-size: 3rem; width:60%}
-
-h1, h2 {
-    padding:1rem;
-}
-
+  h1,
+  h2 {
+    padding: 1rem;
+  }
 }

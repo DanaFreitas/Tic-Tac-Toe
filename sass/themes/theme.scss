@@ -2,12 +2,10 @@
 $Activestyle: null;
 
 .DefaultBackground {
-    //background-color: $Default-Background;
     background-color: variables.$Default-Background;
                                  
   }
 
-      //$Default-Background:#91cc5b;
 
 
 
@@ -19,7 +17,7 @@ $Activestyle: null;
       background-color: variables.$Darker-Background;
       color: variables.$Darker-Background;
       } @else {
-      background-color:// #cdfed6; 
+      background-color:
       orange;
      }
 
@@ -27,7 +25,7 @@ $Activestyle: null;
       @if $Activestyle {
         background-color: variables.$Darker-Background;
       } @else {
-        background-color:// #cdfed6;
+        background-color:
         orange;
       }
     } 

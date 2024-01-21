@@ -1,7 +1,3 @@
-
-$Default-Background: #91cc5b !default; //thene.scss
-$Activestyle: false !default; //buttons.scss //theme.scss
-$Darker-Background: darken($Default-Background, 50%) !default; //theme.scss
-//$Announce: true !default; //announcement.scss
-
-
+$Default-Background: #91cc5b !default;
+$Activestyle: false !default;
+$Darker-Background: darken($Default-Background, 50%) !default;
