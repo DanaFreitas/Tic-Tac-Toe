@@ -1,15 +1,16 @@
 @use "../abstracts/variables.scss";
+@use "../abstracts/mixins.scss";
+
 
 #announcementContainer {
   height: 50%;
   width: 90%;
   left: 5%;
-
-  position: fixed;
+position:relative;
+  //position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
 }
 
 #turnAnnouncer {
@@ -19,15 +20,17 @@
   display: hidden;
 }
 
+
+
 #beginningAnnouncement {
-  color: red;
-  z-index: 2;
-  text-align: center;
-  background-color: white;
-  font-size: 4rem;
-  font-family: "Stick", sans-serif;
-  border-radius: 50% 50% 50% 50%;
+@include Announcements;  
 }
+
+#winningAnnouncement {
+@include Announcements;
+ }
+
+
 
 @media screen and (min-width: 768px) {
   #beginningAnnouncement {

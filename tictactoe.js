@@ -7,6 +7,7 @@ const animate = document.getElementsByClassName("animate");
 const warning = document.getElementById("warning");
 const beginningAnnouncement = document.getElementById("beginningAnnouncement");
 const announcementContainer = document.getElementById("announcementContainer");
+const winningAnnouncement = document.getElementById("winningAnnouncement")
 let turnAnnouncer = document.getElementById("turnAnnouncer");
 let started = false;
 let itStarted = false;
@@ -88,6 +89,7 @@ function begingame(turn) {
   document.body.classList.add('override-background')
   document.body.classList.remove('Default-Background')
   announcementContainer.style.visibility = "visible";
+  beginningAnnouncement.style.visibility = "visible";
  
 
   setTimeout(() => {
@@ -96,6 +98,7 @@ function begingame(turn) {
     document.body.classList.add('Default-Background')
 
     announcementContainer.style.visibility = "hidden"; 
+    beginningAnnouncement.style.visibility = "hidden"; 
   } ,500)
  
 
@@ -151,6 +154,23 @@ function winCondition(evt) {
     const youWin = theRow.every(TestTheElement);
 
     if (youWin) {
+
+
+
+       winningAnnouncement.style.visibility = "visible";
+       winningAnnouncement.textContent = (`${evt.textContent} wins!`)
+       setTimeout(() => {
+         //selectButton[k].classList.remove("animate");
+         winningAnnouncement.style.visibility = "hidden";
+         winningAnnouncement.textContent= "";
+     }, 100000);
+
+
+
+      
+
+
+      
       console.log(`${evt.textContent} wins!`);
       Reset()
     }
